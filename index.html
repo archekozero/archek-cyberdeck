@@ -1,544 +1,199 @@
-<!doctype html><html lang="fr" data-da-page="Cyberdeck"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Un cyberdeck – Archek</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Hanken+Grotesk:wght@400;600&family=JetBrains+Mono:wght@400&display=swap"><style>:root{color-scheme:dark;--bg:#16040A;--fg:#FFEDEE;--muted:#D0A0A6;--line:#5A1A22;--accent:#FF5C6C}
-*{box-sizing:border-box}#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-body{margin:0;background:radial-gradient(ellipse 80% 55% at 15% 0%,rgba(255,40,60,.34),transparent 70%),radial-gradient(ellipse 70% 50% at 90% 100%,rgba(255,120,50,.22),transparent 70%),var(--bg);background-attachment:fixed;color:var(--fg);font:17px/1.6 "Hanken Grotesk",system-ui,-apple-system,sans-serif;padding:max(40px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(32px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
-main{position:relative;z-index:1;max-width:720px;margin:0 auto}a{color:var(--accent)}.label{font:12px "JetBrains Mono",ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-h1{font:700 clamp(40px,10vw,72px)/1 "Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;letter-spacing:-.03em;margin:14px 0 24px;text-wrap:balance}
-h2{font:700 24px "Bricolage Grotesque",Arial,sans-serif;letter-spacing:-.02em;margin:44px 0 8px;display:flex;align-items:center;gap:12px}h2::before{content:"";width:10px;height:10px;background:var(--accent);box-shadow:0 0 12px var(--accent)}
-p{margin:0 0 10px;color:var(--muted)}p strong{color:var(--fg)}.back{display:inline-block;margin-bottom:28px;text-decoration:none}
-.art{display:flex;justify-content:center;align-items:flex-end;padding:28px 16px 20px;margin:0 0 12px;border:1px solid var(--line);border-radius:10px;background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:16px 16px;min-height:220px;box-shadow:inset 0 0 80px color-mix(in srgb,var(--accent) 18%,transparent)}
-.art-img{width:min(200px,60%);height:auto;image-rendering:pixelated;animation:bob 1.2s steps(2,jump-none) infinite alternate}@keyframes bob{from{transform:translateY(0)}to{transform:translateY(-6px)}}
-.badge{display:inline-block;font:12px "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:3px 12px}
-.steps{list-style:none;margin:18px 0 0 8px;padding:0;border-left:2px solid var(--line)}.steps li{position:relative;padding:0 0 24px 30px}
-.steps li::before{content:"";position:absolute;left:-9px;top:5px;width:16px;height:16px;border:2px solid var(--accent);background:var(--bg)}
-.steps li.now::before{background:var(--accent);box-shadow:0 0 14px var(--accent)}.steps li.done::before{background:var(--accent)}
-.st{font:11px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}.steps li.todo .st{color:var(--muted)}
-.steps h3{font:700 20px "Bricolage Grotesque",Arial,sans-serif;margin:2px 0 2px}.steps p{font-size:16px;margin:0}
-.talk{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
-.ct{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--fg);background:rgba(255,255,255,.03);transition:border-color .15s,box-shadow .15s}
-.ct:hover{border-color:var(--accent);box-shadow:0 0 24px color-mix(in srgb,var(--accent) 35%,transparent)}.ct span{display:flex;flex-direction:column;min-width:0}.ct b{font-weight:600}.ct small{color:var(--muted);font-size:13px;overflow-wrap:anywhere}.ico{flex:none;image-rendering:pixelated}
-.others{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}.oth{text-decoration:none;font:13px "JetBrains Mono",monospace;color:var(--c);border:1px solid var(--line);border-radius:999px;padding:6px 14px}.oth:hover{border-color:var(--c)}
-footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}footer a{text-decoration:none}
-@media (prefers-reduced-motion:reduce){.art-img{animation:none}}</style><style>
-.lead{font-size:20px;line-height:1.5;color:var(--fg);max-width:56ch;margin:0 0 6px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}.chip{font:12px "JetBrains Mono",monospace;letter-spacing:.06em;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--muted);background:rgba(255,255,255,.03)}.chip b{color:var(--accent);font-weight:400}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:14px}
-.uc{padding:18px 20px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.03);transition:border-color .15s,box-shadow .15s}.uc:hover{border-color:var(--accent);box-shadow:0 0 28px color-mix(in srgb,var(--accent) 28%,transparent)}
-.uc h3{font:700 19px "Bricolage Grotesque",Arial,sans-serif;margin:0 0 4px;color:var(--fg)}.uc p{margin:0;font-size:16px}.uc .n{font:12px "JetBrains Mono",monospace;color:var(--accent);letter-spacing:.12em}
-.insp{margin:14px 0 0;padding:22px 24px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;background:rgba(255,255,255,.03)}.insp p{margin:0 0 8px;color:var(--fg)}.insp .src{font:12px "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.price{margin-top:14px;padding:16px 20px;border:1px dashed var(--accent);border-radius:10px}.price p{margin:0;font-size:16px}.price b{color:var(--fg)}
-</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;600&family=Pixelify+Sans:wght@500;700&display=swap"><style id="da-css">/* ===== DA Archek — couche commune (fond étoilé, typo, glitch) ===== */
-:root{
-  --bg:#050507;--fg:#f2efe9;--muted:rgba(242,239,233,.64);--line:rgba(var(--da-acc-rgb),.22);
-  --accent:var(--da-acc);--accent-ink:var(--da-acc);--rose:#ff5a7a;--surface:rgba(8,8,12,.72);
-  --tile:#0b0b0d;--tile-dot:#1c1c20;--glass:rgba(8,8,12,.72);
-  --font-display:"Anton",Impact,sans-serif;--font-body:"JetBrains Mono",ui-monospace,monospace;--font-mono:"JetBrains Mono",ui-monospace,monospace;
-  --da-acc:#ff2d4a;--da-acc-rgb:255,45,74;--da-fg:#f2efe9;
-  color-scheme:dark;
-}
-html{background:radial-gradient(ellipse 90% 60% at 50% -10%,rgba(var(--da-acc-rgb),.10),transparent 70%),#07070b !important;background-attachment:fixed !important}
-body{background:transparent !important;color:var(--da-fg) !important;font-family:"JetBrains Mono",ui-monospace,monospace !important;font-size:14px;line-height:1.75;-webkit-font-smoothing:antialiased;padding-bottom:70px !important}
-::selection{background:var(--da-acc);color:#000}
-#sky{display:none !important}
-#da-stars{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;display:block}
-#da-vig{position:fixed;inset:0;z-index:9990;pointer-events:none;background:radial-gradient(ellipse at center,transparent 62%,rgba(0,0,0,.4) 100%)}
-#da-scan{position:fixed;inset:0;z-index:9991;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.07) 0 1px,transparent 1px 3px)}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Un cyberdeck – Archek</title>
+<meta name="description" content="Le prochain projet d'Archek : un cyberdeck fait main pour moins de 200 €. Toutes les configurations possibles, pièce par pièce, avec les prix.">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABE0lEQVR4XmNgGOmAkdQA+J/d+B+fHsap9SSZyUSqA6gNCLoW3cfX1x/F6wbNQGsUeUIhMnhDAOZzdB/v+PgUbwh48EujyMNCBFdIDL4QQPc5uo/RfYgOcKnHFRIDHgIseCMUCcB8TmwaIKQOBoZOCKCDwoQwFKH+Basw1BADBn8I4Ip7XD6GxT2h3DJo0gDOumDkloTooI9bG1z/w1I9sbUhLI0Ufb2Kt8Yd8FxAsD0AA7CQIBYQ8vngzwWEgHycEjhtyNjIgpUeTTtIdGgigwFPAxi1Icxn6ODhonsk+ZBYcwZfCMBAZJYFSiAsZ2AAxzmhkID5HEP/tBNYk9WAhwDOeMUVh6QCQiE2eEOAEBg25QAAleZot28yEdAAAAAASUVORK5CYII=">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--ink:#ECECEC;--dim:rgba(236,236,236,.55);--faint:rgba(236,236,236,.28);--line:rgba(236,236,236,.16);--acc:#FF5C6C}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.65 "JetBrains Mono",ui-monospace,Consolas,monospace;-webkit-font-smoothing:antialiased}
+a{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:1px solid var(--acc);outline-offset:3px}
+#cloud{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 24px}
+nav.top{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);font-size:12px;color:var(--dim)}
+nav.top a{color:var(--dim);text-decoration:none}
+nav.top a:hover{color:var(--ink)}
+.hero{min-height:86vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:40px;padding:40px 0}
+.term{border:1px solid var(--line);background:rgba(0,0,0,.25)}
+.term .bar{display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--line);font-size:11px;color:var(--faint)}
+.term pre{margin:0;padding:18px 16px 22px;white-space:pre-wrap;font:inherit;font-size:13px;min-height:300px}
+.term .c{color:var(--faint)} .term .k{color:var(--acc)} .term .cur{display:inline-block;width:.6em;height:1.1em;background:var(--ink);vertical-align:-2px;animation:b 1s steps(1) infinite}
+@keyframes b{50%{opacity:0}}
+.tag{display:inline-block;border:1px solid var(--acc);color:var(--acc);padding:2px 8px;font-size:11px;margin-bottom:18px}
+h1{font-weight:800;font-size:clamp(34px,5.4vw,64px);line-height:1.02;letter-spacing:-.02em;margin:0 0 18px}
+h1 .thin{font-weight:300;color:var(--dim)}
+.lead{color:var(--dim);max-width:46ch;margin:0 0 26px}
+.cta{display:inline-block;border:1px solid var(--ink);padding:10px 16px;text-decoration:none}
+.cta:hover{background:var(--ink);color:#000}
+.hud{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);margin:10px 0 70px}
+.hud div{padding:16px;border-right:1px solid var(--line)} .hud div:last-child{border-right:0}
+.hud small{display:block;color:var(--faint);font-size:11px} .hud b{font-size:20px;font-weight:600}
+h2{font-size:13px;font-weight:600;color:var(--dim);margin:0 0 6px;letter-spacing:.02em}
+h2 + p{color:var(--faint);margin:0 0 24px;max-width:70ch}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:80px}
+.pane{border:1px solid var(--line);background:rgba(0,0,0,.78);padding:0 0 16px;transition:border-color .2s}
+.pane:hover{border-color:rgba(236,236,236,.45)}
+.pane header{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--line);font-size:11px;color:var(--faint)}
+.pane .dot{width:6px;height:6px;background:var(--acc);border-radius:50%}
+.pane .fn{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .pane .st{color:var(--ink)}
+.pane h3{margin:16px 16px 4px;font-size:20px;font-weight:800}
+.pane .desc{margin:0 16px 12px;color:var(--dim);font-size:13px}
+.pane table{width:calc(100% - 32px);margin:0 16px;border-collapse:collapse;font-size:12.5px}
+.pane td{padding:7px 0;border-top:1px dashed var(--line);vertical-align:top}
+.pane td.r{color:var(--faint);width:30%;padding-right:10px} .pane td.p{text-align:right;white-space:nowrap;padding-left:10px}
+.pane td a{text-decoration:none;border-bottom:1px solid var(--faint)} .pane td a:hover{border-color:var(--acc)}
+.tot{display:flex;justify-content:space-between;align-items:baseline;margin:10px 16px 8px;padding-top:10px;border-top:1px solid var(--ink)}
+.tot span{color:var(--faint);font-size:12px} .tot b{font-size:24px;font-weight:800}
+.pane .bar{position:relative;margin:0 16px;height:10px;border:1px solid var(--line)}
+.pane .bar i{position:absolute;inset:0 auto 0 0;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px);opacity:.55}
+.pane .pct{margin:6px 16px 0;font-size:11px;color:var(--faint)}
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:80px}
+.note{border-left:1px solid var(--acc);padding:4px 0 4px 14px;color:var(--dim);font-size:13px}
+.note b{display:block;color:var(--ink);margin-bottom:4px;font-weight:600}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;font-size:12px;color:var(--faint);display:flex;flex-wrap:wrap;gap:14px 22px}
+footer a{color:var(--dim);text-decoration:none} footer a:hover{color:var(--ink)}
+@media (max-width:860px){.hero{grid-template-columns:1fr;min-height:auto}.grid,.notes{grid-template-columns:1fr}.hud{grid-template-columns:repeat(2,1fr)}.hud div:nth-child(2){border-right:0}.hud div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media (prefers-reduced-motion:reduce){.term .cur{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="cloud" aria-hidden="true"></canvas>
+<div class="wrap">
+<nav class="top"><a href="https://archekozero.github.io/archek-infos.github.io/accueil.html">← archek</a><span>cyberdeck · v0 · en préparation</span></nav>
 
-/* ---- typographie ---- */
-h1{font-family:"Anton",Impact,sans-serif !important;font-weight:400 !important;text-transform:uppercase;letter-spacing:.01em !important;line-height:.92 !important;
-  font-size:clamp(54px,13vw,128px) !important;color:transparent !important;-webkit-text-fill-color:transparent !important;background:none !important;-webkit-text-stroke:1.2px var(--da-fg);filter:drop-shadow(0 0 18px rgba(var(--da-acc-rgb),.35));position:relative}
-h1.da-glitch,h1:hover{animation:da-gl .45s steps(2) 1}
-@keyframes da-gl{0%{text-shadow:2px 0 rgba(var(--da-acc-rgb),.8),-2px 0 rgba(255,255,255,.5);transform:translateX(-2px)}
-  33%{text-shadow:-3px 0 rgba(var(--da-acc-rgb),.8),3px 0 rgba(255,255,255,.5);transform:translateX(2px) skewX(-2deg)}
-  66%{text-shadow:1px 0 rgba(var(--da-acc-rgb),.8),-1px 0 rgba(255,255,255,.5);transform:none}100%{text-shadow:none}}
-h2{font-family:"Anton",Impact,sans-serif !important;font-weight:400 !important;text-transform:uppercase;letter-spacing:.03em !important;font-size:clamp(26px,5vw,38px) !important;color:var(--da-fg) !important;line-height:1.05}
-h2::before{content:"//" !important;width:auto !important;height:auto !important;background:none !important;box-shadow:none !important;border:0 !important;
-  font:600 13px "JetBrains Mono",monospace !important;color:var(--da-acc) !important;letter-spacing:.1em;margin-right:4px;align-self:center}
-h3{font-family:"Anton",Impact,sans-serif !important;font-weight:400 !important;text-transform:uppercase;letter-spacing:.04em !important;color:var(--da-fg) !important}
-p,li,dd,figcaption,blockquote{color:var(--muted)}
-p strong,p b,li strong{color:var(--da-fg) !important}
-.label,.st,.n,.src,small,cite,.chip,.badge,.legend li{font-family:"JetBrains Mono",monospace !important;text-transform:uppercase;letter-spacing:.16em !important;font-size:11px !important}
-.label{color:var(--da-acc) !important}
-.lead,.bio{color:rgba(242,239,233,.82) !important;font-size:15px !important}
+<section class="hero">
+  <div>
+    <span class="tag">prochain projet</span>
+    <h1>Un cyberdeck<br><span class="thin">pour moins de 200 €</span></h1>
+    <p class="lead">Mon propre ordinateur de poche, fait main. Avant de souder quoi que ce soit, j'ai cherché toutes les façons de l'assembler sans dépasser 200 €.</p>
+    <a class="cta" href="#configs">Voir les configurations</a>
+  </div>
+  <div class="term" role="img" aria-label="Terminal : le projet cyberdeck, budget 200 euros, 4 configurations trouvées">
+    <div class="bar"><span>archek@deck: ~/projets/cyberdeck</span><span>zsh</span></div>
+    <pre id="tty"></pre>
+  </div>
+</section>
 
-/* ---- liens & boutons ---- */
-a{color:var(--da-fg);text-decoration:none;border-bottom:1px solid rgba(var(--da-acc-rgb),.55);transition:color .2s,background .2s}
-a:hover{color:var(--da-acc)}
-.lcard,.ct,.topnav a,.dlbtn,.btn{border-bottom-width:1px}
-.btn,.dlbtn,button:not(.da-keep){border-radius:6px !important;background:transparent !important;border:1px solid rgba(var(--da-acc-rgb),.7) !important;color:var(--da-fg) !important;
-  font-family:"JetBrains Mono",monospace !important;text-transform:uppercase;letter-spacing:.14em;font-size:12px !important;box-shadow:none !important}
-.btn:hover,.dlbtn:hover,button:not(.da-keep):hover{background:var(--da-acc) !important;color:#07070b !important;box-shadow:0 0 24px rgba(var(--da-acc-rgb),.45) !important}
+<div class="hud" aria-label="Résumé">
+  <div><small>budget</small><b>200 €</b></div>
+  <div><small>configurations</small><b>4</b></div>
+  <div><small>la moins chère</small><b id="minp">–</b></div>
+  <div><small>prix relevés le</small><b>26.11.2026</b></div>
+</div>
 
-/* ---- blocs : angles droits, fonds noirs ---- */
-.card,.uc,.art,.chip,.badge,.price,.insp,.ct,.dl,.lcard,.pcard,.fcard,details,.quote,.bubble,figure,.tile,.grid>div,.links>a,.talk>a{
-  border-radius:8px !important;border-color:var(--line) !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
-.card,.uc,.price,.insp,.ct,.dl,.lcard,details,.quote,.bubble{background:rgba(12,12,18,.66) !important}
-.uc:hover,.lcard:hover,.ct:hover{border-color:var(--da-acc) !important;box-shadow:0 0 28px rgba(var(--da-acc-rgb),.18) !important}
-.art{background-image:radial-gradient(rgba(242,239,233,.08) 1px,transparent 1px) !important;box-shadow:inset 0 0 80px rgba(var(--da-acc-rgb),.12) !important}
-.chip{background:transparent !important;border:1px solid var(--line) !important;color:var(--muted) !important}
-.chip b{color:var(--da-fg) !important}
-.badge{border-color:var(--da-acc) !important;color:var(--da-acc) !important}
-.steps{border-left-color:rgba(var(--da-acc-rgb),.35) !important}
-.steps li::before{border-color:var(--da-acc) !important;border-radius:0 !important}
-.steps li.now::before,.steps li.done::before{background:var(--da-acc) !important;box-shadow:0 0 14px var(--da-acc) !important}
-img,video{border-radius:0 !important}
-hr{border-color:var(--line)}
+<section id="configs">
+  <h2>// toutes les possibilités d'achat</h2>
+  <p>Chaque ligne mène à la boutique où j'ai relevé le prix. Les prix bougent souvent (la mémoire des Raspberry Pi a beaucoup augmenté en 2026) : je les remettrai à jour avant d'acheter.</p>
+  <div class="grid">
+<article class="pane" data-total="187.88">
+<header><span class="dot"></span><span class="fn">~/projets/cyberdeck/deck_01.cfg</span><span class="st">OK</span></header>
+<h3>L'essentiel</h3><p class="desc">Le meilleur équilibre : un vrai petit ordinateur, un écran tactile, un clavier, de la batterie.</p>
+<table><tbody><tr><td class="r">cerveau</td><td><a href="https://www.kubii.com/fr/recherche?controller=search&s=raspberry+pi+4" target="_blank" rel="noopener">Raspberry Pi 4 · 2 Go</a></td><td class="p">66,30 €</td></tr><tr><td class="r">écran</td><td><a href="https://www.ldlc.com/fiche/PB00677886.html" target="_blank" rel="noopener">Waveshare 7" HDMI tactile IPS 1024×600 (câble + adaptateur micro-HDMI inclus)</a></td><td class="p">52,95 €</td></tr><tr><td class="r">clavier</td><td><a href="https://www.ldlc.com/fiche/PB00200473.html" target="_blank" rel="noopener">Riitek Rii Mini i8, clavier sans fil + pavé tactile</a></td><td class="p">19,95 €</td></tr><tr><td class="r">stockage</td><td><a href="https://www.ldlc.pro/fr-lu/fiche/PB00622198.html" target="_blank" rel="noopener">SanDisk Ultra microSD 64 Go</a></td><td class="p">20,94 €</td></tr><tr><td class="r">énergie</td><td><a href="https://www.ldlc.com/fiche/PB00734831.html" target="_blank" rel="noopener">Nedis batterie externe 10 000 mAh, USB-C PD 20 W</a></td><td class="p">19,75 €</td></tr><tr><td class="r">coque</td><td><a href="https://www.leroymerlin.fr/produits/boite-a-outils-l-31-1-cm-69719076.html" target="_blank" rel="noopener">Petite boîte à outils Leroy Merlin (la coque du deck)</a></td><td class="p">7,99 €</td></tr></tbody></table>
+<div class="tot"><span>total</span><b>187,88 €</b></div>
+<div class="bar" aria-hidden="true"><i style="width:93.9%"></i></div><div class="pct">94 % du budget de 200 €</div>
+</article>
+<article class="pane" data-total="196.24">
+<header><span class="dot"></span><span class="fn">~/projets/cyberdeck/deck_02.cfg</span><span class="st">OK</span></header>
+<h3>Tout dans le clavier</h3><p class="desc">Le Raspberry Pi 400 est déjà caché dans un clavier : il ne reste qu'à lui coller un écran.</p>
+<table><tbody><tr><td class="r">cerveau + clavier</td><td><a href="https://www.ldlc.com/fr-lu/fiche/PB00431919.html" target="_blank" rel="noopener">Raspberry Pi 400 · 4 Go (le PC est dans le clavier)</a></td><td class="p">99,95 €</td></tr><tr><td class="r">écran</td><td><a href="https://www.ldlc.com/fiche/PB00677886.html" target="_blank" rel="noopener">Waveshare 7" HDMI tactile IPS 1024×600 (câble + adaptateur micro-HDMI inclus)</a></td><td class="p">52,95 €</td></tr><tr><td class="r">stockage</td><td><a href="https://www.ldlc.pro/fr-lu/fiche/PB00622198.html" target="_blank" rel="noopener">SanDisk Ultra microSD 32 Go</a></td><td class="p">15,60 €</td></tr><tr><td class="r">énergie</td><td><a href="https://www.ldlc.com/fiche/PB00734831.html" target="_blank" rel="noopener">Nedis batterie externe 10 000 mAh, USB-C PD 20 W</a></td><td class="p">19,75 €</td></tr><tr><td class="r">coque</td><td><a href="https://www.leroymerlin.fr/produits/boite-a-outils-l-31-1-cm-69719076.html" target="_blank" rel="noopener">Petite boîte à outils Leroy Merlin (la coque du deck)</a></td><td class="p">7,99 €</td></tr></tbody></table>
+<div class="tot"><span>total</span><b>196,24 €</b></div>
+<div class="bar" aria-hidden="true"><i style="width:98.1%"></i></div><div class="pct">98 % du budget de 200 €</div>
+</article>
+<article class="pane" data-total="139.64">
+<header><span class="dot"></span><span class="fn">~/projets/cyberdeck/deck_03.cfg</span><span class="st">OK</span></header>
+<h3>Le plus petit</h3><p class="desc">Un deck de poche autour du Pi Zero 2 W : moins puissant, mais le plus léger et le moins cher.</p>
+<table><tbody><tr><td class="r">cerveau (kit)</td><td><a href="https://www.kubii.com/en/nano-computers/3477-1367-kits-raspberry-pi-zero-2-w-3272496308275.html" target="_blank" rel="noopener">Kit Raspberry Pi Zero 2 W (carte, boîtier, alim, microSD 16 Go)</a></td><td class="p">39,00 €</td></tr><tr><td class="r">écran</td><td><a href="https://www.ldlc.com/fiche/PB00677886.html" target="_blank" rel="noopener">Waveshare 7" HDMI tactile IPS 1024×600 (câble + adaptateur micro-HDMI inclus)</a></td><td class="p">52,95 €</td></tr><tr><td class="r">clavier</td><td><a href="https://www.ldlc.com/fiche/PB00200473.html" target="_blank" rel="noopener">Riitek Rii Mini i8, clavier sans fil + pavé tactile</a></td><td class="p">19,95 €</td></tr><tr><td class="r">énergie</td><td><a href="https://www.ldlc.com/fiche/PB00734831.html" target="_blank" rel="noopener">Nedis batterie externe 10 000 mAh, USB-C PD 20 W</a></td><td class="p">19,75 €</td></tr><tr><td class="r">coque</td><td><a href="https://www.leroymerlin.fr/produits/boite-a-outils-l-31-1-cm-69719076.html" target="_blank" rel="noopener">Petite boîte à outils Leroy Merlin (la coque du deck)</a></td><td class="p">7,99 €</td></tr></tbody></table>
+<div class="tot"><span>total</span><b>139,64 €</b></div>
+<div class="bar" aria-hidden="true"><i style="width:69.8%"></i></div><div class="pct">70 % du budget de 200 €</div>
+</article>
+<article class="pane" data-total="157.94">
+<header><span class="dot"></span><span class="fn">~/projets/cyberdeck/deck_04.cfg</span><span class="st">OK</span></header>
+<h3>Petit budget</h3><p class="desc">La même base que « L'essentiel » avec 1 Go de mémoire : pour le terminal et les scripts.</p>
+<table><tbody><tr><td class="r">cerveau</td><td><a href="https://www.kubii.com/fr/recherche?controller=search&s=raspberry+pi+4" target="_blank" rel="noopener">Raspberry Pi 4 · 1 Go</a></td><td class="p">41,70 €</td></tr><tr><td class="r">écran</td><td><a href="https://www.ldlc.com/fiche/PB00677886.html" target="_blank" rel="noopener">Waveshare 7" HDMI tactile IPS 1024×600 (câble + adaptateur micro-HDMI inclus)</a></td><td class="p">52,95 €</td></tr><tr><td class="r">clavier</td><td><a href="https://www.ldlc.com/fiche/PB00200473.html" target="_blank" rel="noopener">Riitek Rii Mini i8, clavier sans fil + pavé tactile</a></td><td class="p">19,95 €</td></tr><tr><td class="r">stockage</td><td><a href="https://www.ldlc.pro/fr-lu/fiche/PB00622198.html" target="_blank" rel="noopener">SanDisk Ultra microSD 32 Go</a></td><td class="p">15,60 €</td></tr><tr><td class="r">énergie</td><td><a href="https://www.ldlc.com/fiche/PB00734831.html" target="_blank" rel="noopener">Nedis batterie externe 10 000 mAh, USB-C PD 20 W</a></td><td class="p">19,75 €</td></tr><tr><td class="r">coque</td><td><a href="https://www.leroymerlin.fr/produits/boite-a-outils-l-31-1-cm-69719076.html" target="_blank" rel="noopener">Petite boîte à outils Leroy Merlin (la coque du deck)</a></td><td class="p">7,99 €</td></tr></tbody></table>
+<div class="tot"><span>total</span><b>157,94 €</b></div>
+<div class="bar" aria-hidden="true"><i style="width:79.0%"></i></div><div class="pct">79 % du budget de 200 €</div>
+</article>
+  </div>
+</section>
 
-/* ---- navigation ---- */
-.topnav{background:rgba(5,5,7,.82) !important;backdrop-filter:none !important;border-radius:0 !important;border-color:var(--line) !important}
-.topnav a{font-family:"JetBrains Mono",monospace !important;text-transform:uppercase;letter-spacing:.14em;font-size:11px !important;border-bottom:0;color:var(--muted) !important;border-radius:0 !important;background:none !important}
-.topnav a[aria-current],.topnav a:hover{color:var(--da-fg) !important;border-color:rgba(var(--da-acc-rgb),.6) !important}
-.topnav a[aria-current]::before{content:"▶ ";color:var(--da-acc)}
+<section>
+  <h2>// à savoir avant d'acheter</h2>
+  <p>Ce que j'ai appris en comparant les pièces.</p>
+  <div class="notes">
+    <div class="note"><b>Pourquoi pas un Raspberry Pi 5 ?</b>Avec les hausses de prix de 2026, la version 4 Go coûte à elle seule autour de 145 € en France : avec l'écran, on dépasse déjà 200 €.</div>
+    <div class="note"><b>L'énergie</b>Un Pi 4 demande 5 V et 3 A. Une batterie externe USB-C de 20 W suffit ; plus tard, un module batterie dédié (UPS avec piles 18650) rendra le deck vraiment autonome.</div>
+    <div class="note"><b>La coque</b>Une boîte à outils à 8 € sert de premier boîtier. Ensuite : une mallette étanche, ou une coque imprimée en 3D à ma façon.</div>
+  </div>
+</section>
 
-/* ---- HUD (bas d'écran) ---- */
-#da-hud{position:fixed;left:0;right:0;bottom:0;z-index:9992;pointer-events:none;display:flex;justify-content:space-between;align-items:flex-end;
-  padding:14px 18px;font:11px "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,239,233,.55);
-  background:linear-gradient(transparent,rgba(5,5,7,.85) 60%)}
-#da-hud b{font-family:"Anton",sans-serif;font-weight:400;font-size:13px;letter-spacing:.08em;color:var(--da-fg);margin-right:8px}
-#da-hud .bar{width:120px;height:2px;background:rgba(255,255,255,.15);margin-top:7px;position:relative}
-#da-hud .bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--da-acc)}
-#da-hud .hint{animation:da-blink 1.4s steps(2) infinite}
-@keyframes da-blink{50%{opacity:.25}}
+<footer>
+  <a href="https://archekozero.github.io/archek-infos.github.io/accueil.html">Accueil</a>
+  <a href="https://archekozero.github.io/archek-infos-rose.github.io/">Rose</a>
+  <a href="https://archekozero.github.io/archek-cle/">Rose sous clé</a>
+  <a href="https://archekozero.github.io/archek-ia/">Une vraie IA</a>
+  <a href="https://archekozero.github.io/parcours/">Parcours</a>
+  <a href="https://archekozero.github.io/archek-conviction/">Convictions</a>
+  <a href="https://archekozero.github.io/archek-mention-l-gal/">Mentions légales</a>
+</footer>
+</div>
 
-/* ---- chargement & transitions ---- */
-#da-load{position:fixed;inset:0;z-index:10000;background:#050507;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .6s}
-#da-load .lt{font:22px "Anton",sans-serif;letter-spacing:.14em;color:#f2efe9}
-#da-load .bar{width:120px;height:2px;background:rgba(255,255,255,.15);position:relative}
-#da-load .bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:#f2efe9;transition:width .8s linear}
-#da-load .pct{font:10px "JetBrains Mono",monospace;color:rgba(242,239,233,.55);letter-spacing:.2em}
-#da-load.out{opacity:0;pointer-events:none}
-#da-gl{position:fixed;inset:0;z-index:9995;pointer-events:none}
-#da-gl div{position:absolute;left:0;right:0;mix-blend-mode:screen}
-#da-fade{position:fixed;inset:0;z-index:9994;background:#000;opacity:0;pointer-events:none;transition:opacity .28s}
-@media (prefers-reduced-motion:reduce){h1:hover,h1.da-glitch{animation:none}#da-hud .hint{animation:none}}
-:root{--da-acc:rgb(255,92,108);--da-acc-rgb:255,92,108}</style><link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABE0lEQVR4XmNgGOmAkdQA+J/d+B+fHsap9SSZyUSqA6gNCLoW3cfX1x/F6wbNQGsUeUIhMnhDAOZzdB/v+PgUbwh48EujyMNCBFdIDL4QQPc5uo/RfYgOcKnHFRIDHgIseCMUCcB8TmwaIKQOBoZOCKCDwoQwFKH+Basw1BADBn8I4Ip7XD6GxT2h3DJo0gDOumDkloTooI9bG1z/w1I9sbUhLI0Ufb2Kt8Yd8FxAsD0AA7CQIBYQ8vngzwWEgHycEjhtyNjIgpUeTTtIdGgigwFPAxi1Icxn6ODhonsk+ZBYcwZfCMBAZJYFSiAsZ2AAxzmhkID5HEP/tBNYk9WAhwDOeMUVh6QCQiE2eEOAEBg25QAAleZot28yEdAAAAAASUVORK5CYII="><link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAADQ0lEQVR4Xu3dPYpWZxiA4ZkwnYULiCFgJ24gEBdgaxOwkVQWsdINiBtIKq3FRrCZNm2KATcg0wVSuAAL6wkDFhYW3ys8wzn3XFf9cTg/N2/zvOc7R0cAAAAAAAAAsGvHuz77ARdPXlwMHHbU8cvnnuMXP4zeabhigiZF0KQImhRBkyJoUgRNiqBJETQpgiZF0KTscg/A5H6L89Oz3T3gOw9+HTnnPe4RsUKTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSNjP6XhlnT46n//70cXcP+P7NH0fOeWWkvpUxuRWaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTMjr6nhpnT46np8bIk6bux8q9WBmTX5oalVuhSRE0KYImRdCkCJoUQZMiaFIETYqgSRE0KSepq/mGlfHtpakx8qSVa9zj9a2wQpMiaFIETYqgSRE0KYImRdCkCJoUQZMiaFIETUp+L8ekp7//NnL4v16/GznudWCFJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpOxy9L2V1/a3MqJe+WuClXu3R1ZoUgRNiqBJETQpgiZF0KQImhRBkyJoUgRNyujH61dMfeh+1coYeSumxtkrH6Sf+hj9Kis0KYImRdCkCJoUQZMiaFIETYqgSRE0KYImZTOj7xV/3rh7cejvV/+U/Pz07NBDb8bKiHrlTfVnnz/srg8rNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpOxuVr9qZd/HdbDH/RkrrNCkCJoUQZMiaFIETYqgSRE0KYImRdCkCJqU/Oh70s+Pbh/8dwq37v108KmcPf7Hc/lOVmhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE3KyeTVrIyGp/z35l9j5K9s4ZlcmnouVmhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE3K6Oh7xcM/fln5+cHeHh0d/Gb2pamR7KSVcfbYfX71fvISD2aFJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAialM284r+yH4Grscd9LVZoUgRNiqBJETQpgiZF0KQImhRBkyJoUgRNymZG33u0Mq738fqrYYUmRdCkCJoUQZMiaFIETYqgSRE0KYImRdCk/A+bQGnN236OYQAAAABJRU5ErkJggg=="><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script><style id="vx-css">
-.vx-host{position:relative}.vx-cv{position:absolute;inset:0;width:100%;height:100%;display:block}.vx-src{visibility:hidden}
-.art.vx-host{cursor:pointer}
-.vx-intro{max-width:62ch}
-.vx-wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin-top:14px;align-items:start}
-@media (max-width:680px){.vx-wrap{grid-template-columns:1fr}}
-.vx-stage{position:relative;min-height:320px;border:1px solid var(--line);border-radius:10px;overflow:hidden;
-  background:radial-gradient(ellipse at 50% 62%,rgba(var(--da-acc-rgb),.16),transparent 70%),radial-gradient(rgba(242,239,233,.06) 1px,transparent 1px) 0 0/16px 16px}
-@media (min-width:681px){.vx-stage{position:sticky;top:16px;min-height:380px}}
-.vx-stage.vx-off{display:none}
-.vx-parts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;counter-reset:vx}
-.vx-parts li{counter-increment:vx;padding:11px 12px 11px 42px;position:relative;border:1px solid var(--line);border-radius:8px;
-  background:rgba(255,255,255,.03);transition:border-color .2s,background .2s,transform .2s}
-.vx-parts li::before{content:counter(vx,decimal-leading-zero);position:absolute;left:13px;top:12px;font:600 11px "JetBrains Mono",monospace;color:rgb(var(--da-acc-rgb))}
-.vx-parts li:hover,.vx-parts li:focus,.vx-parts li.on{border-color:rgba(var(--da-acc-rgb),.75);background:rgba(var(--da-acc-rgb),.09);transform:translateX(3px);outline:none}
-.vx-parts b{display:block;font-size:14px;margin-bottom:4px}
-.vx-parts span{display:block;font-size:13px;color:var(--muted);line-height:1.55}
-.vx-hint{font:11px "JetBrains Mono",monospace;color:var(--muted);margin:8px 0 0}
-@media (prefers-reduced-motion:reduce){.vx-parts li{transition:none}}
-</style></head><body><canvas id="sky" aria-hidden="true" data-tints="255,255,255|255,170,170|255,120,130"></canvas><main><a class="back label" href="https://archekozero.github.io/archek-infos.github.io/accueil.html">← Retour</a><br><span class="label">Projet futur · À venir</span><h1>Un cyberdeck</h1><p class="lead">Mon propre ordinateur de poche, construit à la main, de la carte jusqu'à la coque.</p><div class="art"><svg class="art-img" viewBox="0 0 22 14" role="img" aria-label="Cyberdeck en pixel art, un petit ordinateur portable rouge" shape-rendering="crispEdges" style="filter:drop-shadow(0 0 18px rgba(255,92,108,.7))"><rect x="3" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="4" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="5" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="6" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="7" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="8" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="9" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="10" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="11" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="12" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="13" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="14" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="15" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="16" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="17" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="18" y="0" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="1" width="1" height="1" fill="#FF5C6C"/><rect x="4" y="1" width="1" height="1" fill="#1A0509"/><rect x="5" y="1" width="1" height="1" fill="#1A0509"/><rect x="6" y="1" width="1" height="1" fill="#1A0509"/><rect x="7" y="1" width="1" height="1" fill="#1A0509"/><rect x="8" y="1" width="1" height="1" fill="#1A0509"/><rect x="9" y="1" width="1" height="1" fill="#1A0509"/><rect x="10" y="1" width="1" height="1" fill="#1A0509"/><rect x="11" y="1" width="1" height="1" fill="#1A0509"/><rect x="12" y="1" width="1" height="1" fill="#1A0509"/><rect x="13" y="1" width="1" height="1" fill="#1A0509"/><rect x="14" y="1" width="1" height="1" fill="#1A0509"/><rect x="15" y="1" width="1" height="1" fill="#1A0509"/><rect x="16" y="1" width="1" height="1" fill="#1A0509"/><rect x="17" y="1" width="1" height="1" fill="#1A0509"/><rect x="18" y="1" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="2" width="1" height="1" fill="#FF5C6C"/><rect x="4" y="2" width="1" height="1" fill="#1A0509"/><rect x="5" y="2" width="1" height="1" fill="#FF9AA5"/><rect x="6" y="2" width="1" height="1" fill="#FF9AA5"/><rect x="7" y="2" width="1" height="1" fill="#FF9AA5"/><rect x="8" y="2" width="1" height="1" fill="#FF9AA5"/><rect x="9" y="2" width="1" height="1" fill="#FF9AA5"/><rect x="10" y="2" width="1" height="1" fill="#1A0509"/><rect x="11" y="2" width="1" height="1" fill="#1A0509"/><rect x="12" y="2" width="1" height="1" fill="#1A0509"/><rect x="13" y="2" width="1" height="1" fill="#1A0509"/><rect x="14" y="2" width="1" height="1" fill="#1A0509"/><rect x="15" y="2" width="1" height="1" fill="#1A0509"/><rect x="16" y="2" width="1" height="1" fill="#1A0509"/><rect x="17" y="2" width="1" height="1" fill="#1A0509"/><rect x="18" y="2" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="3" width="1" height="1" fill="#FF5C6C"/><rect x="4" y="3" width="1" height="1" fill="#1A0509"/><rect x="5" y="3" width="1" height="1" fill="#1A0509"/><rect x="6" y="3" width="1" height="1" fill="#1A0509"/><rect x="7" y="3" width="1" height="1" fill="#1A0509"/><rect x="8" y="3" width="1" height="1" fill="#1A0509"/><rect x="9" y="3" width="1" height="1" fill="#1A0509"/><rect x="10" y="3" width="1" height="1" fill="#1A0509"/><rect x="11" y="3" width="1" height="1" fill="#1A0509"/><rect x="12" y="3" width="1" height="1" fill="#1A0509"/><rect x="13" y="3" width="1" height="1" fill="#1A0509"/><rect x="14" y="3" width="1" height="1" fill="#1A0509"/><rect x="15" y="3" width="1" height="1" fill="#1A0509"/><rect x="16" y="3" width="1" height="1" fill="#1A0509"/><rect x="17" y="3" width="1" height="1" fill="#1A0509"/><rect x="18" y="3" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="4" width="1" height="1" fill="#FF5C6C"/><rect x="4" y="4" width="1" height="1" fill="#1A0509"/><rect x="5" y="4" width="1" height="1" fill="#FF9AA5"/><rect x="6" y="4" width="1" height="1" fill="#FF9AA5"/><rect x="7" y="4" width="1" height="1" fill="#FF9AA5"/><rect x="8" y="4" width="1" height="1" fill="#FF9AA5"/><rect x="9" y="4" width="1" height="1" fill="#FF9AA5"/><rect x="10" y="4" width="1" height="1" fill="#FF9AA5"/><rect x="11" y="4" width="1" height="1" fill="#FF9AA5"/><rect x="12" y="4" width="1" height="1" fill="#FF9AA5"/><rect x="13" y="4" width="1" height="1" fill="#1A0509"/><rect x="14" y="4" width="1" height="1" fill="#1A0509"/><rect x="15" y="4" width="1" height="1" fill="#1A0509"/><rect x="16" y="4" width="1" height="1" fill="#1A0509"/><rect x="17" y="4" width="1" height="1" fill="#1A0509"/><rect x="18" y="4" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="5" width="1" height="1" fill="#FF5C6C"/><rect x="4" y="5" width="1" height="1" fill="#1A0509"/><rect x="5" y="5" width="1" height="1" fill="#1A0509"/><rect x="6" y="5" width="1" height="1" fill="#1A0509"/><rect x="7" y="5" width="1" height="1" fill="#1A0509"/><rect x="8" y="5" width="1" height="1" fill="#1A0509"/><rect x="9" y="5" width="1" height="1" fill="#1A0509"/><rect x="10" y="5" width="1" height="1" fill="#1A0509"/><rect x="11" y="5" width="1" height="1" fill="#1A0509"/><rect x="12" y="5" width="1" height="1" fill="#1A0509"/><rect x="13" y="5" width="1" height="1" fill="#1A0509"/><rect x="14" y="5" width="1" height="1" fill="#1A0509"/><rect x="15" y="5" width="1" height="1" fill="#1A0509"/><rect x="16" y="5" width="1" height="1" fill="#1A0509"/><rect x="17" y="5" width="1" height="1" fill="#1A0509"/><rect x="18" y="5" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="6" width="1" height="1" fill="#FF5C6C"/><rect x="4" y="6" width="1" height="1" fill="#1A0509"/><rect x="5" y="6" width="1" height="1" fill="#FF9AA5"/><rect x="6" y="6" width="1" height="1" fill="#FF9AA5"/><rect x="7" y="6" width="1" height="1" fill="#1A0509"/><rect x="8" y="6" width="1" height="1" fill="#1A0509"/><rect x="9" y="6" width="1" height="1" fill="#1A0509"/><rect x="10" y="6" width="1" height="1" fill="#1A0509"/><rect x="11" y="6" width="1" height="1" fill="#1A0509"/><rect x="12" y="6" width="1" height="1" fill="#1A0509"/><rect x="13" y="6" width="1" height="1" fill="#1A0509"/><rect x="14" y="6" width="1" height="1" fill="#1A0509"/><rect x="15" y="6" width="1" height="1" fill="#1A0509"/><rect x="16" y="6" width="1" height="1" fill="#1A0509"/><rect x="17" y="6" width="1" height="1" fill="#1A0509"/><rect x="18" y="6" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="7" width="1" height="1" fill="#FF5C6C"/><rect x="4" y="7" width="1" height="1" fill="#1A0509"/><rect x="5" y="7" width="1" height="1" fill="#1A0509"/><rect x="6" y="7" width="1" height="1" fill="#1A0509"/><rect x="7" y="7" width="1" height="1" fill="#1A0509"/><rect x="8" y="7" width="1" height="1" fill="#1A0509"/><rect x="9" y="7" width="1" height="1" fill="#1A0509"/><rect x="10" y="7" width="1" height="1" fill="#1A0509"/><rect x="11" y="7" width="1" height="1" fill="#1A0509"/><rect x="12" y="7" width="1" height="1" fill="#1A0509"/><rect x="13" y="7" width="1" height="1" fill="#1A0509"/><rect x="14" y="7" width="1" height="1" fill="#1A0509"/><rect x="15" y="7" width="1" height="1" fill="#1A0509"/><rect x="16" y="7" width="1" height="1" fill="#1A0509"/><rect x="17" y="7" width="1" height="1" fill="#1A0509"/><rect x="18" y="7" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="4" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="5" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="6" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="7" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="8" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="9" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="10" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="11" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="12" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="13" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="14" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="15" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="16" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="17" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="18" y="8" width="1" height="1" fill="#FF5C6C"/><rect x="2" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="4" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="5" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="6" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="7" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="8" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="9" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="10" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="11" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="12" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="13" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="14" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="15" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="16" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="17" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="18" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="19" y="9" width="1" height="1" fill="#FF5C6C"/><rect x="2" y="10" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="10" width="1" height="1" fill="#3A0E15"/><rect x="4" y="10" width="1" height="1" fill="#3A0E15"/><rect x="5" y="10" width="1" height="1" fill="#3A0E15"/><rect x="6" y="10" width="1" height="1" fill="#3A0E15"/><rect x="7" y="10" width="1" height="1" fill="#3A0E15"/><rect x="8" y="10" width="1" height="1" fill="#3A0E15"/><rect x="9" y="10" width="1" height="1" fill="#3A0E15"/><rect x="10" y="10" width="1" height="1" fill="#3A0E15"/><rect x="11" y="10" width="1" height="1" fill="#3A0E15"/><rect x="12" y="10" width="1" height="1" fill="#3A0E15"/><rect x="13" y="10" width="1" height="1" fill="#3A0E15"/><rect x="14" y="10" width="1" height="1" fill="#3A0E15"/><rect x="15" y="10" width="1" height="1" fill="#3A0E15"/><rect x="16" y="10" width="1" height="1" fill="#3A0E15"/><rect x="17" y="10" width="1" height="1" fill="#3A0E15"/><rect x="18" y="10" width="1" height="1" fill="#3A0E15"/><rect x="19" y="10" width="1" height="1" fill="#FF5C6C"/><rect x="2" y="11" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="11" width="1" height="1" fill="#3A0E15"/><rect x="4" y="11" width="1" height="1" fill="#FF5C6C"/><rect x="5" y="11" width="1" height="1" fill="#3A0E15"/><rect x="6" y="11" width="1" height="1" fill="#FF5C6C"/><rect x="7" y="11" width="1" height="1" fill="#3A0E15"/><rect x="8" y="11" width="1" height="1" fill="#FF5C6C"/><rect x="9" y="11" width="1" height="1" fill="#3A0E15"/><rect x="10" y="11" width="1" height="1" fill="#FF5C6C"/><rect x="11" y="11" width="1" height="1" fill="#3A0E15"/><rect x="12" y="11" width="1" height="1" fill="#FF5C6C"/><rect x="13" y="11" width="1" height="1" fill="#3A0E15"/><rect x="14" y="11" width="1" height="1" fill="#FF5C6C"/><rect x="15" y="11" width="1" height="1" fill="#3A0E15"/><rect x="16" y="11" width="1" height="1" fill="#FF5C6C"/><rect x="17" y="11" width="1" height="1" fill="#3A0E15"/><rect x="18" y="11" width="1" height="1" fill="#3A0E15"/><rect x="19" y="11" width="1" height="1" fill="#FF5C6C"/><rect x="2" y="12" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="12" width="1" height="1" fill="#3A0E15"/><rect x="4" y="12" width="1" height="1" fill="#3A0E15"/><rect x="5" y="12" width="1" height="1" fill="#3A0E15"/><rect x="6" y="12" width="1" height="1" fill="#3A0E15"/><rect x="7" y="12" width="1" height="1" fill="#3A0E15"/><rect x="8" y="12" width="1" height="1" fill="#3A0E15"/><rect x="9" y="12" width="1" height="1" fill="#3A0E15"/><rect x="10" y="12" width="1" height="1" fill="#3A0E15"/><rect x="11" y="12" width="1" height="1" fill="#3A0E15"/><rect x="12" y="12" width="1" height="1" fill="#3A0E15"/><rect x="13" y="12" width="1" height="1" fill="#3A0E15"/><rect x="14" y="12" width="1" height="1" fill="#3A0E15"/><rect x="15" y="12" width="1" height="1" fill="#3A0E15"/><rect x="16" y="12" width="1" height="1" fill="#3A0E15"/><rect x="17" y="12" width="1" height="1" fill="#3A0E15"/><rect x="18" y="12" width="1" height="1" fill="#3A0E15"/><rect x="19" y="12" width="1" height="1" fill="#FF5C6C"/><rect x="2" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="3" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="4" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="5" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="6" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="7" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="8" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="9" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="10" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="11" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="12" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="13" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="14" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="15" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="16" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="17" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="18" y="13" width="1" height="1" fill="#FF5C6C"/><rect x="19" y="13" width="1" height="1" fill="#FF5C6C"/></svg></div><div class="chips"><span class="chip">Statut <b>À venir</b></span><span class="chip">Inspiration <b>Réseaux sociaux</b></span><span class="chip">Prix <b>Peut-être vendu</b></span></div>
-<h2>Pourquoi ce projet</h2><p>Un cyberdeck est un petit ordinateur portable fait maison, souvent dans un boîtier sur mesure, avec son propre clavier et son écran. Je veux en construire un entièrement moi-même, pour <strong>comprendre une machine de A à Z</strong> et avoir un outil à mon image, capable de faire vivre Rose.</p>
-<h2>À quoi ça sert</h2><div class="grid"><div class="uc"><span class="n">01</span><h3>Un poste ultra-portable</h3><p>Coder, écrire, se connecter : un vrai poste de travail qui tient dans un sac.</p></div><div class="uc"><span class="n">02</span><h3>Une maison pour Rose</h3><p>Une machine pensée pour elle, où elle peut tourner sans dépendre de l'ordinateur de quelqu'un d'autre.</p></div><div class="uc"><span class="n">03</span><h3>Apprendre en construisant</h3><p>Chaque choix de composant, de câble et de boîtier devient une leçon concrète d'ingénierie.</p></div><div class="uc"><span class="n">04</span><h3>Réparable et personnalisable</h3><p>Chaque pièce est choisie, comprise et remplaçable, contrairement à un appareil fermé.</p></div></div>
-<h2>Mon inspiration : les réseaux sociaux</h2><div class="insp"><p>Les réseaux sociaux ont changé la façon dont on se parle, se montre et partage. Le cyberdeck reprend cette idée de connexion permanente (messages, profils, communautés) mais dans un objet qu'on construit et qu'on possède, au lieu d'une application qu'on subit.</p><span class="src">Source d'inspiration</span></div>
-<h2>Ce que ça demande</h2><p>Les compétences que ce projet me fait travailler.</p><div class="chips"><span class="chip">Conception de boîtier</span><span class="chip">Choix du matériel</span><span class="chip">Électronique et câblage</span><span class="chip">Intégration système</span><span class="chip">Documentation</span><span class="chip">Gestion de budget</span></div>
-<h2>En détail</h2><p class="vx-intro">Un cyberdeck, c&#x27;est un empilement de pièces simples. Voilà comment je l&#x27;imagine, couche par couche. Fais défiler pour l&#x27;ouvrir, passe sur une pièce pour la voir de près.</p><div class="vx-wrap"><div class="vx-stage" id="vx-detail" role="img" aria-label="Vue en 3D : L&#x27;écran, Le clavier, La carte (le cerveau), La batterie, Les ports, La coque"></div><ol class="vx-parts" id="vx-list"><li data-part="0" tabindex="0"><b>L&#x27;écran</b><span>Un petit écran pour que Rose y vive en vrai, pas dans une fenêtre perdue. Il doit être lisible en plein jour et ne pas vider la batterie.</span></li><li data-part="1" tabindex="0"><b>Le clavier</b><span>Un vrai clavier physique, compact. Taper du code sur une vitre, non merci : le clavier est la raison d&#x27;être d&#x27;un cyberdeck.</span></li><li data-part="2" tabindex="0"><b>La carte (le cerveau)</b><span>Un petit ordinateur sur une seule carte (du genre Raspberry Pi). C&#x27;est lui qui fait tourner le système et Rose. Je le choisirai pour sa consommation autant que pour sa puissance.</span></li><li data-part="3" tabindex="0"><b>La batterie</b><span>Assez d&#x27;autonomie pour une vraie journée de cours ou de travail, avec une charge par USB-C. C&#x27;est le poids principal de l&#x27;objet, donc le vrai compromis.</span></li><li data-part="4" tabindex="0"><b>Les ports</b><span>USB, sortie vidéo, recharge : de quoi brancher une clé (Rose sous clé !), un écran ou un clavier externe. Tout est accessible sans démonter.</span></li><li data-part="5" tabindex="0"><b>La coque</b><span>Dessinée et fabriquée par moi, d&#x27;abord en prototype puis en version finale. Elle se démonte avec des vis classiques : tout reste réparable.</span></li></ol></div><p class="vx-hint">Fais défiler pour ouvrir · passe la souris sur une pièce · clique sur le dessin du haut pour le faire éclater</p>
-<h2>Les étapes</h2><ol class="steps"><li class="now"><span class="st">Prochaine étape</span><h3>Définir le besoin</h3><p>Ce que le cyberdeck doit faire, sa taille, son autonomie et mon budget.</p></li><li class="todo"><span class="st">À venir</span><h3>Choisir les composants</h3><p>La carte, l'écran, le clavier, la batterie et les ports, avec un équilibre entre prix et performance.</p></li><li class="todo"><span class="st">À venir</span><h3>Concevoir le boîtier</h3><p>Plans, prototype, puis fabrication de la coque sur mesure.</p></li><li class="todo"><span class="st">À venir</span><h3>Assembler et câbler</h3><p>Tout monter ensemble, vérifier chaque connexion et faire le premier démarrage.</p></li><li class="todo"><span class="st">À venir</span><h3>Y installer Rose</h3><p>Installer le système, y faire vivre Rose, puis tester au quotidien.</p></li></ol>
-<h2>Gratuit ou payant ?</h2><div class="price"><p><b>Possiblement vendu.</b> Je pourrais en proposer, avec un prix qui couvre le travail de main-d'œuvre : conception, assemblage et tests. Rose, elle, restera gratuite. <a href="https://archekozero.github.io/archek-conviction/">Lire mes convictions</a></p></div>
-<h2>Viens me parler</h2><p>Une question, une idée, un conseil ? Écris-moi où tu veux.</p><div class="talk"><a class="ct" href="https://www.instagram.com/reihane_zero" target="_blank" rel="noopener"><svg class="ico" width="30" height="30" viewBox="0 0 12 11" shape-rendering="crispEdges" aria-hidden="true" style="filter:drop-shadow(0 0 6px #f08ab866)"><rect x="1" y="0" width="1" height="1" style="fill:#f08ab8"/><rect x="2" y="0" width="1" height="1" style="fill:#f08ab8"/><rect x="3" y="0" width="1" height="1" style="fill:#f08ab8"/><rect x="4" y="0" width="1" height="1" style="fill:#f08ab8"/><rect x="5" y="0" width="1" height="1" style="fill:#f08ab8"/><rect x="6" y="0" width="1" height="1" style="fill:#f08ab8"/><rect x="7" y="0" width="1" height="1" style="fill:#f08ab8"/><rect x="8" y="0" width="1" height="1" style="fill:#f08ab8"/><rect x="9" y="0" width="1" height="1" style="fill:#f08ab8"/><rect x="10" y="0" width="1" height="1" style="fill:#f08ab8"/><rect x="0" y="1" width="1" height="1" style="fill:#f08ab8"/><rect x="11" y="1" width="1" height="1" style="fill:#f08ab8"/><rect x="0" y="2" width="1" height="1" style="fill:#f08ab8"/><rect x="8" y="2" width="1" height="1" style="fill:#f08ab8"/><rect x="11" y="2" width="1" height="1" style="fill:#f08ab8"/><rect x="0" y="3" width="1" height="1" style="fill:#f08ab8"/><rect x="4" y="3" width="1" height="1" style="fill:#f08ab8"/><rect x="5" y="3" width="1" height="1" style="fill:#f08ab8"/><rect x="6" y="3" width="1" height="1" style="fill:#f08ab8"/><rect x="7" y="3" width="1" height="1" style="fill:#f08ab8"/><rect x="11" y="3" width="1" height="1" style="fill:#f08ab8"/><rect x="0" y="4" width="1" height="1" style="fill:#f08ab8"/><rect x="3" y="4" width="1" height="1" style="fill:#f08ab8"/><rect x="8" y="4" width="1" height="1" style="fill:#f08ab8"/><rect x="11" y="4" width="1" height="1" style="fill:#f08ab8"/><rect x="0" y="5" width="1" height="1" style="fill:#f08ab8"/><rect x="3" y="5" width="1" height="1" style="fill:#f08ab8"/><rect x="8" y="5" width="1" height="1" style="fill:#f08ab8"/><rect x="11" y="5" width="1" height="1" style="fill:#f08ab8"/><rect x="0" y="6" width="1" height="1" style="fill:#f08ab8"/><rect x="3" y="6" width="1" height="1" style="fill:#f08ab8"/><rect x="8" y="6" width="1" height="1" style="fill:#f08ab8"/><rect x="11" y="6" width="1" height="1" style="fill:#f08ab8"/><rect x="0" y="7" width="1" height="1" style="fill:#f08ab8"/><rect x="4" y="7" width="1" height="1" style="fill:#f08ab8"/><rect x="5" y="7" width="1" height="1" style="fill:#f08ab8"/><rect x="6" y="7" width="1" height="1" style="fill:#f08ab8"/><rect x="7" y="7" width="1" height="1" style="fill:#f08ab8"/><rect x="11" y="7" width="1" height="1" style="fill:#f08ab8"/><rect x="0" y="8" width="1" height="1" style="fill:#f08ab8"/><rect x="11" y="8" width="1" height="1" style="fill:#f08ab8"/><rect x="0" y="9" width="1" height="1" style="fill:#f08ab8"/><rect x="11" y="9" width="1" height="1" style="fill:#f08ab8"/><rect x="1" y="10" width="1" height="1" style="fill:#f08ab8"/><rect x="2" y="10" width="1" height="1" style="fill:#f08ab8"/><rect x="3" y="10" width="1" height="1" style="fill:#f08ab8"/><rect x="4" y="10" width="1" height="1" style="fill:#f08ab8"/><rect x="5" y="10" width="1" height="1" style="fill:#f08ab8"/><rect x="6" y="10" width="1" height="1" style="fill:#f08ab8"/><rect x="7" y="10" width="1" height="1" style="fill:#f08ab8"/><rect x="8" y="10" width="1" height="1" style="fill:#f08ab8"/><rect x="9" y="10" width="1" height="1" style="fill:#f08ab8"/><rect x="10" y="10" width="1" height="1" style="fill:#f08ab8"/></svg><span><b>Instagram</b><small>@reihane_zero</small></span></a><a class="ct" href="https://fr.linkedin.com/in/reihane-bodart-4313a9407" target="_blank" rel="noopener"><svg class="ico" width="30" height="30" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true" style="filter:drop-shadow(0 0 6px #7FA2FF66)"><rect x="1" y="0" width="1" height="1" style="fill:#7FA2FF"/><rect x="2" y="0" width="1" height="1" style="fill:#7FA2FF"/><rect x="3" y="0" width="1" height="1" style="fill:#7FA2FF"/><rect x="4" y="0" width="1" height="1" style="fill:#7FA2FF"/><rect x="5" y="0" width="1" height="1" style="fill:#7FA2FF"/><rect x="6" y="0" width="1" height="1" style="fill:#7FA2FF"/><rect x="7" y="0" width="1" height="1" style="fill:#7FA2FF"/><rect x="8" y="0" width="1" height="1" style="fill:#7FA2FF"/><rect x="9" y="0" width="1" height="1" style="fill:#7FA2FF"/><rect x="10" y="0" width="1" height="1" style="fill:#7FA2FF"/><rect x="0" y="1" width="1" height="1" style="fill:#7FA2FF"/><rect x="1" y="1" width="1" height="1" style="fill:#7FA2FF"/><rect x="2" y="1" width="1" height="1" style="fill:#7FA2FF"/><rect x="3" y="1" width="1" height="1" style="fill:#7FA2FF"/><rect x="4" y="1" width="1" height="1" style="fill:#7FA2FF"/><rect x="5" y="1" width="1" height="1" style="fill:#7FA2FF"/><rect x="6" y="1" width="1" height="1" style="fill:#7FA2FF"/><rect x="7" y="1" width="1" height="1" style="fill:#7FA2FF"/><rect x="8" y="1" width="1" height="1" style="fill:#7FA2FF"/><rect x="9" y="1" width="1" height="1" style="fill:#7FA2FF"/><rect x="10" y="1" width="1" height="1" style="fill:#7FA2FF"/><rect x="11" y="1" width="1" height="1" style="fill:#7FA2FF"/><rect x="0" y="2" width="1" height="1" style="fill:#7FA2FF"/><rect x="1" y="2" width="1" height="1" style="fill:#7FA2FF"/><rect x="2" y="2" width="1" height="1" style="fill:var(--bg)"/><rect x="3" y="2" width="1" height="1" style="fill:#7FA2FF"/><rect x="4" y="2" width="1" height="1" style="fill:#7FA2FF"/><rect x="5" y="2" width="1" height="1" style="fill:#7FA2FF"/><rect x="6" y="2" width="1" height="1" style="fill:#7FA2FF"/><rect x="7" y="2" width="1" height="1" style="fill:#7FA2FF"/><rect x="8" y="2" width="1" height="1" style="fill:#7FA2FF"/><rect x="9" y="2" width="1" height="1" style="fill:#7FA2FF"/><rect x="10" y="2" width="1" height="1" style="fill:#7FA2FF"/><rect x="11" y="2" width="1" height="1" style="fill:#7FA2FF"/><rect x="0" y="3" width="1" height="1" style="fill:#7FA2FF"/><rect x="1" y="3" width="1" height="1" style="fill:#7FA2FF"/><rect x="2" y="3" width="1" height="1" style="fill:#7FA2FF"/><rect x="3" y="3" width="1" height="1" style="fill:#7FA2FF"/><rect x="4" y="3" width="1" height="1" style="fill:#7FA2FF"/><rect x="5" y="3" width="1" height="1" style="fill:#7FA2FF"/><rect x="6" y="3" width="1" height="1" style="fill:#7FA2FF"/><rect x="7" y="3" width="1" height="1" style="fill:#7FA2FF"/><rect x="8" y="3" width="1" height="1" style="fill:#7FA2FF"/><rect x="9" y="3" width="1" height="1" style="fill:#7FA2FF"/><rect x="10" y="3" width="1" height="1" style="fill:#7FA2FF"/><rect x="11" y="3" width="1" height="1" style="fill:#7FA2FF"/><rect x="0" y="4" width="1" height="1" style="fill:#7FA2FF"/><rect x="1" y="4" width="1" height="1" style="fill:#7FA2FF"/><rect x="2" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="3" y="4" width="1" height="1" style="fill:#7FA2FF"/><rect x="4" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="5" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="6" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="7" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="8" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="9" y="4" width="1" height="1" style="fill:#7FA2FF"/><rect x="10" y="4" width="1" height="1" style="fill:#7FA2FF"/><rect x="11" y="4" width="1" height="1" style="fill:#7FA2FF"/><rect x="0" y="5" width="1" height="1" style="fill:#7FA2FF"/><rect x="1" y="5" width="1" height="1" style="fill:#7FA2FF"/><rect x="2" y="5" width="1" height="1" style="fill:var(--bg)"/><rect x="3" y="5" width="1" height="1" style="fill:#7FA2FF"/><rect x="4" y="5" width="1" height="1" style="fill:var(--bg)"/><rect x="5" y="5" width="1" height="1" style="fill:#7FA2FF"/><rect x="6" y="5" width="1" height="1" style="fill:#7FA2FF"/><rect x="7" y="5" width="1" height="1" style="fill:#7FA2FF"/><rect x="8" y="5" width="1" height="1" style="fill:var(--bg)"/><rect x="9" y="5" width="1" height="1" style="fill:#7FA2FF"/><rect x="10" y="5" width="1" height="1" style="fill:#7FA2FF"/><rect x="11" y="5" width="1" height="1" style="fill:#7FA2FF"/><rect x="0" y="6" width="1" height="1" style="fill:#7FA2FF"/><rect x="1" y="6" width="1" height="1" style="fill:#7FA2FF"/><rect x="2" y="6" width="1" height="1" style="fill:var(--bg)"/><rect x="3" y="6" width="1" height="1" style="fill:#7FA2FF"/><rect x="4" y="6" width="1" height="1" style="fill:var(--bg)"/><rect x="5" y="6" width="1" height="1" style="fill:#7FA2FF"/><rect x="6" y="6" width="1" height="1" style="fill:#7FA2FF"/><rect x="7" y="6" width="1" height="1" style="fill:#7FA2FF"/><rect x="8" y="6" width="1" height="1" style="fill:var(--bg)"/><rect x="9" y="6" width="1" height="1" style="fill:#7FA2FF"/><rect x="10" y="6" width="1" height="1" style="fill:#7FA2FF"/><rect x="11" y="6" width="1" height="1" style="fill:#7FA2FF"/><rect x="0" y="7" width="1" height="1" style="fill:#7FA2FF"/><rect x="1" y="7" width="1" height="1" style="fill:#7FA2FF"/><rect x="2" y="7" width="1" height="1" style="fill:var(--bg)"/><rect x="3" y="7" width="1" height="1" style="fill:#7FA2FF"/><rect x="4" y="7" width="1" height="1" style="fill:var(--bg)"/><rect x="5" y="7" width="1" height="1" style="fill:#7FA2FF"/><rect x="6" y="7" width="1" height="1" style="fill:#7FA2FF"/><rect x="7" y="7" width="1" height="1" style="fill:#7FA2FF"/><rect x="8" y="7" width="1" height="1" style="fill:var(--bg)"/><rect x="9" y="7" width="1" height="1" style="fill:#7FA2FF"/><rect x="10" y="7" width="1" height="1" style="fill:#7FA2FF"/><rect x="11" y="7" width="1" height="1" style="fill:#7FA2FF"/><rect x="0" y="8" width="1" height="1" style="fill:#7FA2FF"/><rect x="1" y="8" width="1" height="1" style="fill:#7FA2FF"/><rect x="2" y="8" width="1" height="1" style="fill:var(--bg)"/><rect x="3" y="8" width="1" height="1" style="fill:#7FA2FF"/><rect x="4" y="8" width="1" height="1" style="fill:var(--bg)"/><rect x="5" y="8" width="1" height="1" style="fill:#7FA2FF"/><rect x="6" y="8" width="1" height="1" style="fill:#7FA2FF"/><rect x="7" y="8" width="1" height="1" style="fill:#7FA2FF"/><rect x="8" y="8" width="1" height="1" style="fill:var(--bg)"/><rect x="9" y="8" width="1" height="1" style="fill:#7FA2FF"/><rect x="10" y="8" width="1" height="1" style="fill:#7FA2FF"/><rect x="11" y="8" width="1" height="1" style="fill:#7FA2FF"/><rect x="0" y="9" width="1" height="1" style="fill:#7FA2FF"/><rect x="1" y="9" width="1" height="1" style="fill:#7FA2FF"/><rect x="2" y="9" width="1" height="1" style="fill:var(--bg)"/><rect x="3" y="9" width="1" height="1" style="fill:#7FA2FF"/><rect x="4" y="9" width="1" height="1" style="fill:var(--bg)"/><rect x="5" y="9" width="1" height="1" style="fill:#7FA2FF"/><rect x="6" y="9" width="1" height="1" style="fill:#7FA2FF"/><rect x="7" y="9" width="1" height="1" style="fill:#7FA2FF"/><rect x="8" y="9" width="1" height="1" style="fill:var(--bg)"/><rect x="9" y="9" width="1" height="1" style="fill:#7FA2FF"/><rect x="10" y="9" width="1" height="1" style="fill:#7FA2FF"/><rect x="11" y="9" width="1" height="1" style="fill:#7FA2FF"/><rect x="0" y="10" width="1" height="1" style="fill:#7FA2FF"/><rect x="1" y="10" width="1" height="1" style="fill:#7FA2FF"/><rect x="2" y="10" width="1" height="1" style="fill:#7FA2FF"/><rect x="3" y="10" width="1" height="1" style="fill:#7FA2FF"/><rect x="4" y="10" width="1" height="1" style="fill:#7FA2FF"/><rect x="5" y="10" width="1" height="1" style="fill:#7FA2FF"/><rect x="6" y="10" width="1" height="1" style="fill:#7FA2FF"/><rect x="7" y="10" width="1" height="1" style="fill:#7FA2FF"/><rect x="8" y="10" width="1" height="1" style="fill:#7FA2FF"/><rect x="9" y="10" width="1" height="1" style="fill:#7FA2FF"/><rect x="10" y="10" width="1" height="1" style="fill:#7FA2FF"/><rect x="11" y="10" width="1" height="1" style="fill:#7FA2FF"/><rect x="1" y="11" width="1" height="1" style="fill:#7FA2FF"/><rect x="2" y="11" width="1" height="1" style="fill:#7FA2FF"/><rect x="3" y="11" width="1" height="1" style="fill:#7FA2FF"/><rect x="4" y="11" width="1" height="1" style="fill:#7FA2FF"/><rect x="5" y="11" width="1" height="1" style="fill:#7FA2FF"/><rect x="6" y="11" width="1" height="1" style="fill:#7FA2FF"/><rect x="7" y="11" width="1" height="1" style="fill:#7FA2FF"/><rect x="8" y="11" width="1" height="1" style="fill:#7FA2FF"/><rect x="9" y="11" width="1" height="1" style="fill:#7FA2FF"/><rect x="10" y="11" width="1" height="1" style="fill:#7FA2FF"/></svg><span><b>LinkedIn</b><small>Reihane Bodart</small></span></a><a class="ct" href="https://discord.gg/ysQG9vwy8J" target="_blank" rel="noopener"><svg class="ico" width="30" height="30" viewBox="0 0 12 10" shape-rendering="crispEdges" aria-hidden="true" style="filter:drop-shadow(0 0 6px #A9A6FF66)"><rect x="2" y="0" width="1" height="1" style="fill:#A9A6FF"/><rect x="3" y="0" width="1" height="1" style="fill:#A9A6FF"/><rect x="4" y="0" width="1" height="1" style="fill:#A9A6FF"/><rect x="5" y="0" width="1" height="1" style="fill:#A9A6FF"/><rect x="6" y="0" width="1" height="1" style="fill:#A9A6FF"/><rect x="7" y="0" width="1" height="1" style="fill:#A9A6FF"/><rect x="8" y="0" width="1" height="1" style="fill:#A9A6FF"/><rect x="9" y="0" width="1" height="1" style="fill:#A9A6FF"/><rect x="1" y="1" width="1" height="1" style="fill:#A9A6FF"/><rect x="2" y="1" width="1" height="1" style="fill:#A9A6FF"/><rect x="3" y="1" width="1" height="1" style="fill:#A9A6FF"/><rect x="4" y="1" width="1" height="1" style="fill:#A9A6FF"/><rect x="5" y="1" width="1" height="1" style="fill:#A9A6FF"/><rect x="6" y="1" width="1" height="1" style="fill:#A9A6FF"/><rect x="7" y="1" width="1" height="1" style="fill:#A9A6FF"/><rect x="8" y="1" width="1" height="1" style="fill:#A9A6FF"/><rect x="9" y="1" width="1" height="1" style="fill:#A9A6FF"/><rect x="10" y="1" width="1" height="1" style="fill:#A9A6FF"/><rect x="0" y="2" width="1" height="1" style="fill:#A9A6FF"/><rect x="1" y="2" width="1" height="1" style="fill:#A9A6FF"/><rect x="2" y="2" width="1" height="1" style="fill:#A9A6FF"/><rect x="3" y="2" width="1" height="1" style="fill:#A9A6FF"/><rect x="4" y="2" width="1" height="1" style="fill:#A9A6FF"/><rect x="5" y="2" width="1" height="1" style="fill:#A9A6FF"/><rect x="6" y="2" width="1" height="1" style="fill:#A9A6FF"/><rect x="7" y="2" width="1" height="1" style="fill:#A9A6FF"/><rect x="8" y="2" width="1" height="1" style="fill:#A9A6FF"/><rect x="9" y="2" width="1" height="1" style="fill:#A9A6FF"/><rect x="10" y="2" width="1" height="1" style="fill:#A9A6FF"/><rect x="11" y="2" width="1" height="1" style="fill:#A9A6FF"/><rect x="0" y="3" width="1" height="1" style="fill:#A9A6FF"/><rect x="1" y="3" width="1" height="1" style="fill:#A9A6FF"/><rect x="2" y="3" width="1" height="1" style="fill:#A9A6FF"/><rect x="3" y="3" width="1" height="1" style="fill:#A9A6FF"/><rect x="4" y="3" width="1" height="1" style="fill:#A9A6FF"/><rect x="5" y="3" width="1" height="1" style="fill:#A9A6FF"/><rect x="6" y="3" width="1" height="1" style="fill:#A9A6FF"/><rect x="7" y="3" width="1" height="1" style="fill:#A9A6FF"/><rect x="8" y="3" width="1" height="1" style="fill:#A9A6FF"/><rect x="9" y="3" width="1" height="1" style="fill:#A9A6FF"/><rect x="10" y="3" width="1" height="1" style="fill:#A9A6FF"/><rect x="11" y="3" width="1" height="1" style="fill:#A9A6FF"/><rect x="0" y="4" width="1" height="1" style="fill:#A9A6FF"/><rect x="1" y="4" width="1" height="1" style="fill:#A9A6FF"/><rect x="2" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="3" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="4" y="4" width="1" height="1" style="fill:#A9A6FF"/><rect x="5" y="4" width="1" height="1" style="fill:#A9A6FF"/><rect x="6" y="4" width="1" height="1" style="fill:#A9A6FF"/><rect x="7" y="4" width="1" height="1" style="fill:#A9A6FF"/><rect x="8" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="9" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="10" y="4" width="1" height="1" style="fill:#A9A6FF"/><rect x="11" y="4" width="1" height="1" style="fill:#A9A6FF"/><rect x="0" y="5" width="1" height="1" style="fill:#A9A6FF"/><rect x="1" y="5" width="1" height="1" style="fill:#A9A6FF"/><rect x="2" y="5" width="1" height="1" style="fill:var(--bg)"/><rect x="3" y="5" width="1" height="1" style="fill:var(--bg)"/><rect x="4" y="5" width="1" height="1" style="fill:#A9A6FF"/><rect x="5" y="5" width="1" height="1" style="fill:#A9A6FF"/><rect x="6" y="5" width="1" height="1" style="fill:#A9A6FF"/><rect x="7" y="5" width="1" height="1" style="fill:#A9A6FF"/><rect x="8" y="5" width="1" height="1" style="fill:var(--bg)"/><rect x="9" y="5" width="1" height="1" style="fill:var(--bg)"/><rect x="10" y="5" width="1" height="1" style="fill:#A9A6FF"/><rect x="11" y="5" width="1" height="1" style="fill:#A9A6FF"/><rect x="0" y="6" width="1" height="1" style="fill:#A9A6FF"/><rect x="1" y="6" width="1" height="1" style="fill:#A9A6FF"/><rect x="2" y="6" width="1" height="1" style="fill:#A9A6FF"/><rect x="3" y="6" width="1" height="1" style="fill:#A9A6FF"/><rect x="4" y="6" width="1" height="1" style="fill:#A9A6FF"/><rect x="5" y="6" width="1" height="1" style="fill:#A9A6FF"/><rect x="6" y="6" width="1" height="1" style="fill:#A9A6FF"/><rect x="7" y="6" width="1" height="1" style="fill:#A9A6FF"/><rect x="8" y="6" width="1" height="1" style="fill:#A9A6FF"/><rect x="9" y="6" width="1" height="1" style="fill:#A9A6FF"/><rect x="10" y="6" width="1" height="1" style="fill:#A9A6FF"/><rect x="11" y="6" width="1" height="1" style="fill:#A9A6FF"/><rect x="0" y="7" width="1" height="1" style="fill:#A9A6FF"/><rect x="1" y="7" width="1" height="1" style="fill:#A9A6FF"/><rect x="2" y="7" width="1" height="1" style="fill:#A9A6FF"/><rect x="3" y="7" width="1" height="1" style="fill:#A9A6FF"/><rect x="4" y="7" width="1" height="1" style="fill:#A9A6FF"/><rect x="5" y="7" width="1" height="1" style="fill:#A9A6FF"/><rect x="6" y="7" width="1" height="1" style="fill:#A9A6FF"/><rect x="7" y="7" width="1" height="1" style="fill:#A9A6FF"/><rect x="8" y="7" width="1" height="1" style="fill:#A9A6FF"/><rect x="9" y="7" width="1" height="1" style="fill:#A9A6FF"/><rect x="10" y="7" width="1" height="1" style="fill:#A9A6FF"/><rect x="11" y="7" width="1" height="1" style="fill:#A9A6FF"/><rect x="1" y="8" width="1" height="1" style="fill:#A9A6FF"/><rect x="2" y="8" width="1" height="1" style="fill:#A9A6FF"/><rect x="3" y="8" width="1" height="1" style="fill:#A9A6FF"/><rect x="4" y="8" width="1" height="1" style="fill:#A9A6FF"/><rect x="7" y="8" width="1" height="1" style="fill:#A9A6FF"/><rect x="8" y="8" width="1" height="1" style="fill:#A9A6FF"/><rect x="9" y="8" width="1" height="1" style="fill:#A9A6FF"/><rect x="10" y="8" width="1" height="1" style="fill:#A9A6FF"/><rect x="2" y="9" width="1" height="1" style="fill:#A9A6FF"/><rect x="3" y="9" width="1" height="1" style="fill:#A9A6FF"/><rect x="8" y="9" width="1" height="1" style="fill:#A9A6FF"/><rect x="9" y="9" width="1" height="1" style="fill:#A9A6FF"/></svg><span><b>Discord</b><small>Serveur</small></span></a><a class="ct" href="mailto:reihane.bodart.01@gmail.com" target="_blank" rel="noopener"><svg class="ico" width="30" height="30" viewBox="0 0 12 8" shape-rendering="crispEdges" aria-hidden="true" style="filter:drop-shadow(0 0 6px #FFD27F66)"><rect x="0" y="0" width="1" height="1" style="fill:#FFD27F"/><rect x="1" y="0" width="1" height="1" style="fill:#FFD27F"/><rect x="2" y="0" width="1" height="1" style="fill:#FFD27F"/><rect x="3" y="0" width="1" height="1" style="fill:#FFD27F"/><rect x="4" y="0" width="1" height="1" style="fill:#FFD27F"/><rect x="5" y="0" width="1" height="1" style="fill:#FFD27F"/><rect x="6" y="0" width="1" height="1" style="fill:#FFD27F"/><rect x="7" y="0" width="1" height="1" style="fill:#FFD27F"/><rect x="8" y="0" width="1" height="1" style="fill:#FFD27F"/><rect x="9" y="0" width="1" height="1" style="fill:#FFD27F"/><rect x="10" y="0" width="1" height="1" style="fill:#FFD27F"/><rect x="11" y="0" width="1" height="1" style="fill:#FFD27F"/><rect x="0" y="1" width="1" height="1" style="fill:#FFD27F"/><rect x="1" y="1" width="1" height="1" style="fill:var(--bg)"/><rect x="2" y="1" width="1" height="1" style="fill:#FFD27F"/><rect x="3" y="1" width="1" height="1" style="fill:#FFD27F"/><rect x="4" y="1" width="1" height="1" style="fill:#FFD27F"/><rect x="5" y="1" width="1" height="1" style="fill:#FFD27F"/><rect x="6" y="1" width="1" height="1" style="fill:#FFD27F"/><rect x="7" y="1" width="1" height="1" style="fill:#FFD27F"/><rect x="8" y="1" width="1" height="1" style="fill:#FFD27F"/><rect x="9" y="1" width="1" height="1" style="fill:#FFD27F"/><rect x="10" y="1" width="1" height="1" style="fill:var(--bg)"/><rect x="11" y="1" width="1" height="1" style="fill:#FFD27F"/><rect x="0" y="2" width="1" height="1" style="fill:#FFD27F"/><rect x="1" y="2" width="1" height="1" style="fill:#FFD27F"/><rect x="2" y="2" width="1" height="1" style="fill:var(--bg)"/><rect x="3" y="2" width="1" height="1" style="fill:#FFD27F"/><rect x="4" y="2" width="1" height="1" style="fill:#FFD27F"/><rect x="5" y="2" width="1" height="1" style="fill:#FFD27F"/><rect x="6" y="2" width="1" height="1" style="fill:#FFD27F"/><rect x="7" y="2" width="1" height="1" style="fill:#FFD27F"/><rect x="8" y="2" width="1" height="1" style="fill:#FFD27F"/><rect x="9" y="2" width="1" height="1" style="fill:var(--bg)"/><rect x="10" y="2" width="1" height="1" style="fill:#FFD27F"/><rect x="11" y="2" width="1" height="1" style="fill:#FFD27F"/><rect x="0" y="3" width="1" height="1" style="fill:#FFD27F"/><rect x="1" y="3" width="1" height="1" style="fill:#FFD27F"/><rect x="2" y="3" width="1" height="1" style="fill:#FFD27F"/><rect x="3" y="3" width="1" height="1" style="fill:var(--bg)"/><rect x="4" y="3" width="1" height="1" style="fill:#FFD27F"/><rect x="5" y="3" width="1" height="1" style="fill:#FFD27F"/><rect x="6" y="3" width="1" height="1" style="fill:#FFD27F"/><rect x="7" y="3" width="1" height="1" style="fill:#FFD27F"/><rect x="8" y="3" width="1" height="1" style="fill:var(--bg)"/><rect x="9" y="3" width="1" height="1" style="fill:#FFD27F"/><rect x="10" y="3" width="1" height="1" style="fill:#FFD27F"/><rect x="11" y="3" width="1" height="1" style="fill:#FFD27F"/><rect x="0" y="4" width="1" height="1" style="fill:#FFD27F"/><rect x="1" y="4" width="1" height="1" style="fill:#FFD27F"/><rect x="2" y="4" width="1" height="1" style="fill:#FFD27F"/><rect x="3" y="4" width="1" height="1" style="fill:#FFD27F"/><rect x="4" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="5" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="6" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="7" y="4" width="1" height="1" style="fill:var(--bg)"/><rect x="8" y="4" width="1" height="1" style="fill:#FFD27F"/><rect x="9" y="4" width="1" height="1" style="fill:#FFD27F"/><rect x="10" y="4" width="1" height="1" style="fill:#FFD27F"/><rect x="11" y="4" width="1" height="1" style="fill:#FFD27F"/><rect x="0" y="5" width="1" height="1" style="fill:#FFD27F"/><rect x="1" y="5" width="1" height="1" style="fill:#FFD27F"/><rect x="2" y="5" width="1" height="1" style="fill:#FFD27F"/><rect x="3" y="5" width="1" height="1" style="fill:#FFD27F"/><rect x="4" y="5" width="1" height="1" style="fill:#FFD27F"/><rect x="5" y="5" width="1" height="1" style="fill:#FFD27F"/><rect x="6" y="5" width="1" height="1" style="fill:#FFD27F"/><rect x="7" y="5" width="1" height="1" style="fill:#FFD27F"/><rect x="8" y="5" width="1" height="1" style="fill:#FFD27F"/><rect x="9" y="5" width="1" height="1" style="fill:#FFD27F"/><rect x="10" y="5" width="1" height="1" style="fill:#FFD27F"/><rect x="11" y="5" width="1" height="1" style="fill:#FFD27F"/><rect x="0" y="6" width="1" height="1" style="fill:#FFD27F"/><rect x="1" y="6" width="1" height="1" style="fill:#FFD27F"/><rect x="2" y="6" width="1" height="1" style="fill:#FFD27F"/><rect x="3" y="6" width="1" height="1" style="fill:#FFD27F"/><rect x="4" y="6" width="1" height="1" style="fill:#FFD27F"/><rect x="5" y="6" width="1" height="1" style="fill:#FFD27F"/><rect x="6" y="6" width="1" height="1" style="fill:#FFD27F"/><rect x="7" y="6" width="1" height="1" style="fill:#FFD27F"/><rect x="8" y="6" width="1" height="1" style="fill:#FFD27F"/><rect x="9" y="6" width="1" height="1" style="fill:#FFD27F"/><rect x="10" y="6" width="1" height="1" style="fill:#FFD27F"/><rect x="11" y="6" width="1" height="1" style="fill:#FFD27F"/><rect x="0" y="7" width="1" height="1" style="fill:#FFD27F"/><rect x="1" y="7" width="1" height="1" style="fill:#FFD27F"/><rect x="2" y="7" width="1" height="1" style="fill:#FFD27F"/><rect x="3" y="7" width="1" height="1" style="fill:#FFD27F"/><rect x="4" y="7" width="1" height="1" style="fill:#FFD27F"/><rect x="5" y="7" width="1" height="1" style="fill:#FFD27F"/><rect x="6" y="7" width="1" height="1" style="fill:#FFD27F"/><rect x="7" y="7" width="1" height="1" style="fill:#FFD27F"/><rect x="8" y="7" width="1" height="1" style="fill:#FFD27F"/><rect x="9" y="7" width="1" height="1" style="fill:#FFD27F"/><rect x="10" y="7" width="1" height="1" style="fill:#FFD27F"/><rect x="11" y="7" width="1" height="1" style="fill:#FFD27F"/></svg><span><b>E-mail</b><small>Écris-moi</small></span></a></div>
-<h2>Les autres projets</h2><div class="others"><a class="oth" href="https://archekozero.github.io/archek-infos-rose.github.io/" style="--c:#f08ab8">Rose →</a><a class="oth" href="https://archekozero.github.io/archek-cle/" style="--c:#7FA2FF">Rose sous clé →</a><a class="oth" href="https://archekozero.github.io/archek-ia/" style="--c:#FFFFFF">Une vraie IA →</a></div>
-<footer><span class="label">Archek</span><a class="label" href="https://archekozero.github.io/archek-infos.github.io/accueil.html">Accueil</a><a class="label" href="https://archekozero.github.io/parcours/">Parcours</a><a class="label" href="https://archekozero.github.io/archek-conviction/">Mes convictions</a><a class="label" href="https://archekozero.github.io/archek-mention-l-gal/">Mentions légales</a><a class="label" href="https://archekozero.github.io/archek-infos-rose.github.io/">Rose</a></footer></main><script>(function () {
-  var cv = document.getElementById("sky");
-  if (!cv || !cv.getContext) return;
-  var ctx = cv.getContext("2d");
-  var reduce = false;
-  try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
-  var TINTS = (cv.getAttribute("data-tints") || "255,255,255").split("|");
-  var seed = 7;
-  function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
-  var stars = [];
-  for (var i = 0; i < 280; i++) {
-    stars.push({ x: rnd(), y: rnd(), r: 0.4 + Math.pow(rnd(), 3) * 1.6, d: 0.15 + rnd() * 0.85, p: rnd() * 6.283, f: 0.6 + rnd() * 2.2, b: 0.35 + rnd() * 0.65, c: TINTS[Math.floor(rnd() * TINTS.length)] });
-  }
-  var W = 0, H = 0, dpr = 1, energy = 0, lastY = null, running = false;
-  function draw() {
-    var sy = window.pageYOffset || document.documentElement.scrollTop || 0;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, W, H);
-    var n = Math.min(stars.length, Math.max(90, Math.floor(W * H / 4200)));
-    for (var i = 0; i < n; i++) {
-      var s = stars[i];
-      var x = s.x * W;
-      var y = (((s.y * H - sy * s.d * 0.12) % H) + H) % H;
-      var tw = 0.5 + 0.5 * Math.sin(s.p + sy * 0.012 * s.f);
-      var a = Math.min(1, s.b * (0.16 + 0.84 * tw) * (0.85 + energy * 0.9));
-      ctx.fillStyle = "rgba(" + s.c + "," + a.toFixed(3) + ")";
-      ctx.beginPath();
-      ctx.arc(x, y, s.r * (0.85 + 0.3 * tw), 0, 6.283);
-      ctx.fill();
-      if (s.r > 1.3 && tw > 0.75) {
-        var L = s.r * (3 + 4 * energy) * tw;
-        ctx.strokeStyle = "rgba(" + s.c + "," + (a * 0.55).toFixed(3) + ")";
-        ctx.lineWidth = 0.7;
-        ctx.beginPath();
-        ctx.moveTo(x - L, y); ctx.lineTo(x + L, y);
-        ctx.moveTo(x, y - L); ctx.lineTo(x, y + L);
-        ctx.stroke();
-      }
-    }
-  }
-  function loop() {
-    energy *= 0.93;
-    if (energy < 0.02) { energy = 0; running = false; draw(); return; }
-    draw();
-    requestAnimationFrame(loop);
-  }
-  function onScroll() {
-    var y = window.pageYOffset || 0;
-    if (lastY !== null) energy = Math.min(1, energy + Math.abs(y - lastY) / 240);
-    lastY = y;
-    if (!running) { running = true; requestAnimationFrame(loop); }
-  }
-  function resize() {
-    dpr = Math.min(2, window.devicePixelRatio || 1);
-    W = cv.clientWidth || window.innerWidth;
-    H = cv.clientHeight || window.innerHeight;
-    cv.width = Math.round(W * dpr);
-    cv.height = Math.round(H * dpr);
-    draw();
-  }
-  window.addEventListener("resize", resize);
-  resize();
-  if (!reduce) window.addEventListener("scroll", onScroll, { passive: true });
-})();
-</script><script id="da-js">/* ===== DA Archek — fond étoilé, HUD, chargement, glitch ===== */
-(function () {
+<script>
+(function(){
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var PAGE = document.documentElement.getAttribute('data-da-page') || document.title;
-
-  // ---------- fond étoilé (pixels, parallaxe, étoiles filantes) ----------
-  var cv = document.createElement('canvas'); cv.id = 'da-stars'; cv.setAttribute('aria-hidden', 'true');
-  document.body.insertBefore(cv, document.body.firstChild);
-  var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = 1, stars = [], shoots = [];
-  var ACC = (getComputedStyle(document.documentElement).getPropertyValue('--da-acc-rgb') || '255,45,74').trim();
-  var COLS = ['242,239,233', '242,239,233', '242,239,233', '220,225,240', ACC, ACC];
-  function seed() {
-    stars = [];
-    var n = Math.round(W * H / 2600);
-    for (var i = 0; i < n; i++) {
-      var d = Math.random();
-      stars.push({ x: Math.random() * W, y: Math.random() * H, d: d, s: d > .93 ? 2 : 1,
-        c: COLS[Math.floor(Math.random() * COLS.length)], p: Math.random() * 6.28, f: .5 + Math.random() * 2 });
-    }
-  }
-  function resize() {
-    dpr = Math.min(2, window.devicePixelRatio || 1);
-    W = innerWidth; H = innerHeight;
-    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.imageSmoothingEnabled = false;
-    seed();
-  }
-  var t0 = performance.now();
-  function draw(now) {
-    var t = (now - t0) / 1000, sy = window.pageYOffset || 0;
-    ctx.clearRect(0, 0, W, H);
-    for (var i = 0; i < stars.length; i++) {
-      var s = stars[i];
-      var y = ((s.y - sy * (0.04 + s.d * 0.22)) % H + H) % H;
-      var tw = reduce ? 1 : (Math.sin(s.p + t * s.f) > -0.2 ? 1 : 0.35);
-      ctx.fillStyle = 'rgba(' + s.c + ',' + ((0.2 + s.d * 0.6) * tw).toFixed(2) + ')';
-      var px = s.s;
-      ctx.fillRect(Math.round(s.x), Math.round(y), px, px);
-      if (s.s === 2 && tw === 1 && s.d > .97) { // petite croix pixel
-        ctx.fillRect(Math.round(s.x) - 2, Math.round(y), 1, 1); ctx.fillRect(Math.round(s.x) + 3, Math.round(y), 1, 1);
-        ctx.fillRect(Math.round(s.x), Math.round(y) - 2, 1, 1); ctx.fillRect(Math.round(s.x), Math.round(y) + 3, 1, 1);
-      }
-    }
-    if (!reduce && Math.random() < 0.004 && shoots.length < 2)
-      shoots.push({ x: Math.random() * W, y: Math.random() * H * .5, vx: -(4 + Math.random() * 4), vy: 2 + Math.random() * 2, l: 1 });
-    for (var k = shoots.length - 1; k >= 0; k--) {
-      var o = shoots[k]; o.x += o.vx; o.y += o.vy; o.l -= 0.02;
-      for (var j = 0; j < 14; j++) {
-        ctx.fillStyle = 'rgba(242,239,233,' + (o.l * (1 - j / 14)).toFixed(2) + ')';
-        ctx.fillRect(Math.round(o.x - o.vx * j * .5), Math.round(o.y - o.vy * j * .5), 2, 2);
-      }
-      if (o.l <= 0) shoots.splice(k, 1);
-    }
-    requestAnimationFrame(draw);
-  }
-  addEventListener('resize', resize); resize(); requestAnimationFrame(draw);
-
-  // ---------- couches : vignette, scanlines, glitch, fondu ----------
-  ['da-vig', 'da-scan', 'da-gl', 'da-fade'].forEach(function (id) { var d = document.createElement('div'); d.id = id; document.body.appendChild(d); });
-  var gl = document.getElementById('da-gl'), fade = document.getElementById('da-fade');
-  function glitch(ms) {
-    if (reduce) return;
-    gl.innerHTML = '';
-    for (var i = 0; i < 6; i++) {
-      var d = document.createElement('div');
-      d.style.top = (Math.random() * 100) + '%'; d.style.height = (1 + Math.random() * 7) + '%';
-      d.style.background = ['rgba(' + ACC + ',.28)', 'rgba(255,255,255,.14)', 'rgba(' + ACC + ',.16)'][i % 3];
-      gl.appendChild(d);
-    }
-    var end = performance.now() + (ms || 380), shake = [].slice.call(document.querySelectorAll('main,.wrap'));
-    (function jit() {
-      var kids = gl.children;
-      for (var i = 0; i < kids.length; i++) kids[i].style.transform = 'translateX(' + ((Math.random() - .5) * 60) + 'px)';
-      shake.forEach(function (m) { m.style.transform = 'translateX(' + ((Math.random() - .5) * 5) + 'px)'; });
-      if (performance.now() < end) requestAnimationFrame(jit); else { gl.innerHTML = ''; shake.forEach(function (m) { m.style.transform = ''; }); }
-    })();
-    var h1 = document.querySelector('h1');
-    if (h1) { h1.classList.remove('da-glitch'); void h1.offsetWidth; h1.classList.add('da-glitch'); }
-  }
-  window.daGlitch = glitch;
-  setInterval(function () { if (Math.random() < .2) glitch(110); }, 12000);
-
-  // ---------- HUD ----------
-  var hud = document.createElement('div'); hud.id = 'da-hud';
-  hud.innerHTML = '<div><b>ARCHEK</b><span class="pg"></span><div class="bar"><i></i></div></div><div class="hint">Scroll ↓</div>';
-  hud.querySelector('.pg').textContent = '— ' + PAGE;
-  document.body.appendChild(hud);
-  var bar = hud.querySelector('.bar i'), hint = hud.querySelector('.hint');
-  if (document.getElementById('music')) hint.style.display = 'none';
-  function onScroll() {
-    var max = document.documentElement.scrollHeight - innerHeight;
-    var p = max > 0 ? Math.min(1, (window.pageYOffset || 0) / max) : 1;
-    bar.style.width = (p * 100) + '%'; hint.style.opacity = p > .97 ? 0 : '';
-  }
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-  // ---------- chargement (une fois par session) ----------
-  var seen = false; try { seen = sessionStorage.getItem('da-loaded') === '1'; sessionStorage.setItem('da-loaded', '1'); } catch (e) {}
-  if (!seen && !reduce) {
-    var L = document.createElement('div'); L.id = 'da-load';
-    L.innerHTML = '<div class="lt">LOADING</div><div class="bar"><i></i></div><div class="pct">000%</div>';
-    document.body.appendChild(L);
-    var bi = L.querySelector('.bar i'), pc = L.querySelector('.pct'), s0 = performance.now();
-    requestAnimationFrame(function () { bi.style.width = '100%'; });
-    (function cnt() {
-      var k = Math.min(1, (performance.now() - s0) / 800);
-      pc.textContent = String(Math.round(k * 100)).padStart(3, '0') + '%';
-      if (k < 1) requestAnimationFrame(cnt); else { L.classList.add('out'); glitch(450); setTimeout(function () { L.remove(); }, 700); }
-    })();
-  } else { setTimeout(function () { glitch(300); }, 60); }
-
-  // ---------- transition entre pages du site ----------
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href]');
-    if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || a.target === '_blank') return;
-    var url; try { url = new URL(a.getAttribute('href'), location.href); } catch (x) { return; }
-    if (url.origin !== location.origin || (url.pathname === location.pathname && url.hash)) return;
-    e.preventDefault(); glitch(320); fade.style.opacity = 1;
-    setTimeout(function () { location.href = url.href; }, 300);
-  });
-  addEventListener('pageshow', function () { fade.style.opacity = 0; });
+  // ---- prix le plus bas ----
+  var ts=[].map.call(document.querySelectorAll('.pane'),function(p){return parseFloat(p.dataset.total)});
+  var m=Math.min.apply(null,ts); document.getElementById('minp').textContent=m.toFixed(2).replace('.',',')+' €';
+  // ---- terminal ----
+  var lines=[
+    ['c','# prochain projet'],
+    ['','$ whoami'],['','archek · je construis Rose, ma petite IA de bureau'],
+    ['','$ cat projet.txt'],['','un cyberdeck : un ordinateur de poche, fait main'],
+    ['','$ ./budget --max 200'],
+    ['k','> cerveau ........ raspberry pi'],['k','> écran .......... 7" tactile'],['k','> clavier ........ sans fil'],['k','> énergie ........ batterie usb-c'],['k','> coque .......... boîte à outils'],
+    ['','4 configurations trouvées sous 200 €'],['c','# défile pour les voir ↓']
+  ];
+  var tty=document.getElementById('tty'), out='', li=0, ch=0;
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+  function render(cur){tty.innerHTML=out+(cur||'')+'<span class="cur"></span>'}
+  if(reduce){lines.forEach(function(l){out+='<span class="'+l[0]+'">'+esc(l[1])+'</span>\n'});render();}
+  else (function step(){
+    if(li>=lines.length){render();return}
+    var l=lines[li];
+    if(ch<=l[1].length){render('<span class="'+l[0]+'">'+esc(l[1].slice(0,ch))+'</span>');ch++;setTimeout(step,l[1][0]==='$'?38:14)}
+    else{out+='<span class="'+l[0]+'">'+esc(l[1])+'</span>\n';li++;ch=0;setTimeout(step,l[1][0]==='$'?260:90)}
+  })();
+  // ---- nuage de points : un cyberdeck en fil de fer qui tourne doucement et suit la souris ----
+  var cv=document.getElementById('cloud'),x=cv.getContext('2d'),W,H,dpr=Math.min(2,window.devicePixelRatio||1),pts=[];
+  function box(cx,cy,cz,w,h,d,n){for(var i=0;i<n;i++){var f=Math.random()*6|0,u=Math.random()-.5,v=Math.random()-.5,p;
+    if(f<2)p=[u*w,v*h,(f?.5:-.5)*d];else if(f<4)p=[u*w,(f==2?.5:-.5)*h,v*d];else p=[(f==4?.5:-.5)*w,u*h,v*d];
+    pts.push([cx+p[0],cy+p[1],cz+p[2]])}}
+  box(0,0.18,0,2.2,0.16,1.4,900);           // base (clavier)
+  for(var r=0;r<4;r++)for(var c=0;c<12;c++)pts.push([-0.95+c*0.173,0.09,-0.45+r*0.2]);  // touches
+  for(var i=0;i<1000;i++){var px=(Math.random()-.5)*2.1,v=Math.random()*1.3;
+    if(Math.random()<.45){ if(Math.random()<.5)px=(Math.random()<.5?-1:1)*1.05; else v=Math.random()<.5?0:1.3;}
+    pts.push([px,0.1-v*Math.cos(.26),-0.7-v*Math.sin(.26)])}  // ecran, legerement incline vers l'arriere
+  var mx=0,my=0,tx=0,ty=0,t0=performance.now();
+  addEventListener('mousemove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+  function size(){W=cv.width=innerWidth*dpr;H=cv.height=innerHeight*dpr}
+  size(); addEventListener('resize',size);
+  function frame(t){
+    tx+=(mx-tx)*.05;ty+=(my-ty)*.05;
+    var ry=(reduce?0.6:((t-t0)/9000))+tx*1.2, rx=0.35+ty*.6, s=Math.min(W,H)*0.2, cx=W*(innerWidth>860?0.72:0.5), cy=H*(innerWidth>860?0.56:0.5);
+    x.clearRect(0,0,W,H);
+    var cy_=Math.cos(ry),sy=Math.sin(ry),cx_=Math.cos(rx),sx=Math.sin(rx);
+    for(var i=0;i<pts.length;i++){var p=pts[i],X=p[0]*cy_-p[2]*sy,Z=p[0]*sy+p[2]*cy_,Y=p[1]*cx_-Z*sx;Z=p[1]*sx+Z*cx_;
+      var k=3.2/(3.2+Z),al=Math.max(.08,Math.min(.7,.5-Z*.2));
+      x.fillStyle='rgba(236,236,236,'+al+')';x.fillRect(cx+X*s*k,cy+Y*s*k,dpr,dpr)}
+    if(!reduce)requestAnimationFrame(frame)}
+  requestAnimationFrame(frame);
 })();
-</script><script type="module" id="vx-js">
-/* ===== Archek — animations 3D (voxels du pixel art + vue éclatée « En détail ») ===== */
-import * as THREE from 'three';
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const lerp = (a, b, t) => a + (b - a) * t;
-const ease = t => t < 0 ? 0 : t > 1 ? 1 : 1 - Math.pow(1 - t, 3);
-
-function css2rgb(c) {
-  const el = document.createElement('i'); el.style.color = c; document.body.appendChild(el);
-  const m = getComputedStyle(el).color.match(/[\d.]+/g); el.remove();
-  return m ? [m[0] / 255, m[1] / 255, m[2] / 255, m[3] === undefined ? 1 : +m[3]] : null;
-}
-
-// ---- moteur commun : un canvas qui ne tourne que s'il est visible ----
-function stage(host, { fov = 30 } = {}) {
-  let renderer;
-  try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' }); }
-  catch (e) { return null; }
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
-  const cv = renderer.domElement; cv.className = 'vx-cv'; cv.setAttribute('aria-hidden', 'true');
-  host.appendChild(cv);
-  const scene = new THREE.Scene();
-  const cam = new THREE.PerspectiveCamera(fov, 1, 0.1, 400);
-  scene.add(new THREE.AmbientLight(0xffffff, 0.62));
-  const key = new THREE.DirectionalLight(0xffffff, 0.9); key.position.set(4, 6, 10); scene.add(key);
-  const rim = new THREE.DirectionalLight(0xffffff, 0.35); rim.position.set(-6, -2, -6); scene.add(rim);
-  const st = { renderer, scene, cam, cv, visible: false, w: 1, h: 1, ptr: { x: 0, y: 0, sx: 0, sy: 0, over: false }, t0: performance.now(), tick: null };
-  const size = () => { const r = host.getBoundingClientRect(); st.w = Math.max(1, r.width); st.h = Math.max(1, r.height);
-    renderer.setSize(st.w, st.h, false); cam.aspect = st.w / st.h; cam.updateProjectionMatrix(); };
-  size(); new ResizeObserver(size).observe(host);
-  new IntersectionObserver(es => { st.visible = es[0].isIntersecting; if (st.visible) loop(); }, { rootMargin: '80px' }).observe(host);
-  host.addEventListener('pointermove', e => { const r = host.getBoundingClientRect();
-    st.ptr.x = (e.clientX - r.left) / r.width * 2 - 1; st.ptr.y = (e.clientY - r.top) / r.height * 2 - 1; st.ptr.over = true; });
-  host.addEventListener('pointerleave', () => { st.ptr.x = 0; st.ptr.y = 0; st.ptr.over = false; });
-  let running = false;
-  function loop() {
-    if (running) return; running = true;
-    const f = now => {
-      if (!st.visible || document.hidden) { running = false; return; }
-      st.ptr.sx = lerp(st.ptr.sx, st.ptr.x, .06); st.ptr.sy = lerp(st.ptr.sy, st.ptr.y, .06);
-      if (st.tick) st.tick((now - st.t0) / 1000);
-      renderer.render(scene, cam);
-      if (reduce) { running = false; return; }
-      requestAnimationFrame(f);
-    };
-    requestAnimationFrame(f);
-  }
-  document.addEventListener('visibilitychange', () => { if (!document.hidden && st.visible) loop(); });
-  st.loop = loop;
-  return st;
-}
-
-// ---- 1) le pixel art de la page devient un objet en voxels ----
-function pixelsOf(el) {
-  const out = [];
-  if (el.tagName.toLowerCase() === 'svg') {
-    const vb = el.viewBox.baseVal;
-    el.querySelectorAll('rect').forEach(r => {
-      const raw = r.getAttribute('fill') || r.style.fill || '';
-      if (!raw || raw === 'none' || raw.includes('var(')) return;
-      const c = css2rgb(raw); if (!c || c[3] < .5) return;
-      const x = +r.getAttribute('x') || 0, y = +r.getAttribute('y') || 0;
-      const w = +(r.getAttribute('width') || 1), h = +(r.getAttribute('height') || 1);
-      for (let i = 0; i < w; i++) for (let j = 0; j < h; j++) out.push({ x: x + i, y: y + j, c });
-    });
-    return { w: vb.width || 16, h: vb.height || 16, px: out };
-  }
-  // image (sprite) : lue pixel par pixel, réduite à 48 px de haut au plus
-  const img = el, k = Math.min(1, 48 / (img.naturalHeight || 48));
-  const w = Math.max(1, Math.round(img.naturalWidth * k)), h = Math.max(1, Math.round(img.naturalHeight * k));
-  const c = document.createElement('canvas'); c.width = w; c.height = h;
-  const g = c.getContext('2d'); g.imageSmoothingEnabled = false; g.drawImage(img, 0, 0, w, h);
-  let d; try { d = g.getImageData(0, 0, w, h).data; } catch (e) { return { w, h, px: [] }; }
-  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { const i = (y * w + x) * 4;
-    if (d[i + 3] > 128) out.push({ x, y, c: [d[i] / 255, d[i + 1] / 255, d[i + 2] / 255, 1] }); }
-  return { w, h, px: out };
-}
-
-function voxelArt(host, el, { glow = '#ff5c6c' } = {}) {
-  const data = pixelsOf(el);
-  if (data.px.length < 4) return;
-  host.classList.add('vx-host');
-  const st = stage(host, { fov: 28 }); if (!st) return;
-  el.classList.add('vx-src');                       // le dessin 2D reste pour les lecteurs d'écran, caché à l'œil
-  const n = data.px.length;
-  const geo = new THREE.BoxGeometry(0.94, 0.94, 1);
-  const mat = new THREE.MeshLambertMaterial({ vertexColors: false });
-  const mesh = new THREE.InstancedMesh(geo, mat, n);
-  const col = new THREE.Color(), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), s3 = new THREE.Vector3(1, 1, 1);
-  const home = [], from = [], depth = [];
-  data.px.forEach((p, i) => {
-    const lum = .3 * p.c[0] + .59 * p.c[1] + .11 * p.c[2];
-    const z = lum > .55 ? .55 : lum > .2 ? 0 : -.55;         // les couleurs vives ressortent, les sombres reculent
-    home.push(new THREE.Vector3(p.x - data.w / 2 + .5, data.h / 2 - p.y - .5, z));
-    from.push(new THREE.Vector3((Math.random() - .5) * data.w * 2.2, (Math.random() - .5) * data.h * 2.2, 18 + Math.random() * 24));
-    depth.push(1 + (z + .55) * 1.2);
-    col.setRGB(p.c[0], p.c[1], p.c[2]); col.convertSRGBToLinear(); mesh.setColorAt(i, col);
-  });
-  const grp = new THREE.Group(); grp.add(mesh); st.scene.add(grp);
-  const fit = () => { const s = Math.max(data.w / st.cam.aspect, data.h) * 1.25; st.cam.position.set(0, 0, s / (2 * Math.tan(THREE.MathUtils.degToRad(14)))); };
-  fit(); new ResizeObserver(fit).observe(host);
-  let born = -1, burst = 0; const v = new THREE.Vector3();
-  host.addEventListener('click', () => { burst = 1; });
-  st.tick = t => {
-    if (born < 0) born = t;
-    const a = reduce ? 1 : ease((t - born) / 1.6);
-    burst = Math.max(0, burst - .02);
-    const spread = (st.ptr.over ? .35 : 0) + burst * 2.2;     // au survol, les couches s'écartent ; au clic, ça éclate
-    for (let i = 0; i < n; i++) {
-      const h = home[i], d = (i % 7) / 7 * .25;
-      const k = ease((a - d) / (1 - d));
-      v.set(lerp(from[i].x, h.x, k), lerp(from[i].y, h.y, k), lerp(from[i].z, h.z * (1 + spread * 3) + spread * depth[i] * 1.5, k));
-      m4.compose(v, q, s3); mesh.setMatrixAt(i, m4);
-    }
-    mesh.instanceMatrix.needsUpdate = true;
-    grp.rotation.y = reduce ? -.35 : Math.sin(t * .55) * .38 + st.ptr.sx * .5;
-    grp.rotation.x = reduce ? .12 : Math.sin(t * .4) * .08 + st.ptr.sy * .3;
-    grp.position.y = reduce ? 0 : Math.sin(t * 1.3) * .35;
-  };
-  st.loop();
-  host.title = 'Clique pour faire éclater le dessin';
-}
-
-// ---- 2) « En détail » : une vue éclatée, chaque pièce expliquée ----
-// parts : [{ name, size:[w,h,d], pos:[x,y,z], out:[dx,dy,dz], color, glow, spin }]
-function explodedView(host, parts, { cam = [0, 3, 16], look = [0, 0, 0], list = null, orbit = false } = {}) {
-  host.classList.add('vx-stage');
-  const st = stage(host, { fov: 34 }); if (!st) { host.classList.add('vx-off'); return; }
-  const meshes = parts.map((p, i) => {
-    const c = new THREE.Color(p.color);
-    const mat = new THREE.MeshStandardMaterial({ color: c, roughness: .55, metalness: .1, transparent: true,
-      emissive: new THREE.Color(p.glow || p.color), emissiveIntensity: p.glow ? .55 : .06 });
-    const geo = p.shape === 'sphere' ? new THREE.SphereGeometry(p.size[0] / 2, 20, 14)
-              : p.shape === 'cyl' ? new THREE.CylinderGeometry(p.size[0] / 2, p.size[0] / 2, p.size[1], 20)
-              : new THREE.BoxGeometry(...p.size);
-    const m = new THREE.Mesh(geo, mat);
-    const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo, 30), new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: .18 }));
-    if (p.shape) edges.visible = false;                         // pas de fil de fer sur les boules
-    m.add(edges); m.userData = { p, i, mat, edges }; st.scene.add(m); return m;
-  });
-  // fils / liens entre pièces (pour l'IA : les neurones)
-  let lines = null;
-  if (host.dataset.links) {
-    const pairs = JSON.parse(host.dataset.links), g = new THREE.BufferGeometry();
-    g.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(pairs.length * 6), 3));
-    lines = new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: .22 }));
-    lines.userData.pairs = pairs; st.scene.add(lines);
-  }
-  // cadrage automatique : tout l'objet ouvert tient dans le cadre, quelle que soit la taille de l'écran
-  let R = 1;
-  parts.forEach(p => { const o = p.out || [0, 0, 0], h = Math.max(...p.size) / 2;
-    const q = p.orbit ? [p.orbit[1], p.pos[1], p.orbit[1]] : [p.pos[0] + o[0] - look[0], p.pos[1] + o[1] - look[1], p.pos[2] + o[2] - look[2]];
-    R = Math.max(R, Math.hypot(q[0], q[1], q[2]) + h); });
-  const dir = new THREE.Vector3(cam[0] - look[0], cam[1] - look[1], cam[2] - look[2]).normalize();
-  let camPos = [...cam];
-  const fit = () => { const vf = THREE.MathUtils.degToRad(st.cam.fov), hf = 2 * Math.atan(Math.tan(vf / 2) * st.cam.aspect);
-    const d = R / Math.sin(Math.min(vf, hf) / 2) * .74;
-    camPos = [look[0] + dir.x * d, look[1] + dir.y * d, look[2] + dir.z * d]; };
-  fit(); new ResizeObserver(fit).observe(host);
-  st.cam.position.set(...camPos); st.cam.lookAt(...look);
-  let active = -1;
-  const items = list ? [...list.querySelectorAll('[data-part]')] : [];
-  items.forEach(li => {
-    const k = +li.dataset.part;
-    li.addEventListener('pointerenter', () => { active = k; });
-    li.addEventListener('focusin', () => { active = k; });
-    li.addEventListener('pointerleave', () => { active = -1; });
-    li.addEventListener('focusout', () => { active = -1; });
-  });
-  // la vue s'éclate en fonction du défilement : la pièce montrée change toute seule
-  let prog = 0;
-  const onScroll = () => { const r = host.getBoundingClientRect(); prog = Math.max(0, Math.min(1, (innerHeight * .9 - r.top) / (innerHeight * .7))); };
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
-  const ray = new THREE.Raycaster(), nd = new THREE.Vector2();
-  let hovered = -1;
-  host.addEventListener('pointermove', e => { const r = host.getBoundingClientRect();
-    nd.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height * 2 - 1)); ray.setFromCamera(nd, st.cam);
-    const hit = ray.intersectObjects(meshes, false)[0]; const k = hit ? hit.object.userData.i : -1;
-    host.style.cursor = k >= 0 ? 'pointer' : ''; if (k !== hovered) { hovered = k; items.forEach(li => li.classList.toggle('on', +li.dataset.part === k)); } });
-  host.addEventListener('pointerleave', () => { hovered = -1; items.forEach(li => li.classList.remove('on')); });
-  host.addEventListener('click', () => { if (hovered >= 0 && items[hovered]) items[hovered].scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }); });
-  const tmp = new THREE.Vector3();
-  st.tick = t => {
-    const ex = reduce ? 1 : ease(prog);
-    const focus = active >= 0 ? active : hovered;
-    meshes.forEach(m => {
-      const { p, i, mat, edges } = m.userData;
-      const sel = focus === i, dim = focus >= 0 && !sel;
-      const o = p.out || [0, 0, 0], lift = sel ? .5 : 0;
-      if (orbit && p.orbit) {                                   // pièces qui tournent autour du centre
-        const ang = p.orbit[0] + t * (reduce ? 0 : p.orbit[2] || .25), R = p.orbit[1] * (.55 + .45 * ex);
-        m.position.set(Math.cos(ang) * R, p.pos[1] + Math.sin(t * .8 + i) * .2 + lift, Math.sin(ang) * R);
-      } else {
-        m.position.set(p.pos[0] + o[0] * ex, p.pos[1] + o[1] * ex + lift, p.pos[2] + o[2] * ex);
-      }
-      if (p.spin && !reduce) m.rotation.y = t * p.spin;
-      mat.emissiveIntensity = lerp(mat.emissiveIntensity, sel ? .9 : p.glow ? .5 : .06, .12);
-      mat.opacity = lerp(mat.opacity, dim ? .3 : 1, .15); edges.material.opacity = sel ? .7 : .18;
-    });
-    if (lines) {
-      const a = lines.geometry.attributes.position.array; let j = 0;
-      lines.userData.pairs.forEach(([x, y]) => { tmp.copy(meshes[x].position); a[j++] = tmp.x; a[j++] = tmp.y; a[j++] = tmp.z;
-        tmp.copy(meshes[y].position); a[j++] = tmp.x; a[j++] = tmp.y; a[j++] = tmp.z; });
-      lines.geometry.attributes.position.needsUpdate = true;
-      lines.material.opacity = .15 + .12 * Math.sin(t * 3);
-    }
-    const sway = reduce ? 0 : Math.sin(t * .3) * .9;
-    st.cam.position.set(camPos[0] + sway + st.ptr.sx * 2.2, camPos[1] - st.ptr.sy * 1.4, camPos[2]);
-    st.cam.lookAt(...look);
-  };
-  st.loop();
-}
-
-const vxArt=document.querySelector('.art'),vxSrc=vxArt&&vxArt.querySelector('svg,img');if(vxSrc)voxelArt(vxArt,vxSrc);
-explodedView(document.getElementById('vx-detail'),[{"size": [6, 3.4, 0.25], "pos": [0, 1.9, -1.5], "out": [0, 1.6, -0.8], "color": "#2a0a10", "glow": "#ff9aa5"}, {"size": [5.8, 0.22, 2.8], "pos": [0, 0.45, 0.4], "out": [0, 1.0, 0.8], "color": "#ff5c6c"}, {"size": [3, 0.18, 2], "pos": [0, 0.15, 0.2], "out": [0, 0, 0], "color": "#1f5a33", "glow": "#3fd37a"}, {"size": [3.6, 0.45, 1.6], "pos": [0, -0.2, 0.2], "out": [0, -1.1, 0], "color": "#3a3a44"}, {"size": [0.5, 0.35, 1.4], "pos": [3.15, 0, 0.3], "out": [1.3, 0, 0], "color": "#c9c9d4"}, {"size": [6.4, 0.5, 3.4], "pos": [0, -0.62, 0.3], "out": [0, -1.8, 0], "color": "#7a1623"}],{cam:[5, 4, 15],look:[0, 0, 0],orbit:false,list:document.getElementById('vx-list')});
-</script></body></html>
+</script>
+</body>
+</html>
