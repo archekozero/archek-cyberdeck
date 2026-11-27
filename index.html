@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500;62..125,800;62..125,900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<style>:root{--bg:#F6D300;--ink:#0A0A0A}</style>
+<style>:root{--bg:#0E0E10;--ink:#F2F2F2;--gpuo:.35}</style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
 </head><body>
 <div class="sky" id="sky" aria-hidden="true"></div>
@@ -22,7 +22,7 @@
   <p class="tag">prochain projet · 2026</p>
 </section>
 <section class="manifest">
-  <p>Mon prochain projet : un ordinateur de poche fait main. Quatre machines imaginées, quatre caractères, moins de 200 € de pièces pour chacune.</p>
+  <p>Mon prochain projet : un ordinateur de poche fait main. Quatre machines imaginées, quatre caractères, <em>moins de 200 € de pièces</em> pour chacune.</p>
 </section>
 <section class="grid" id="decks" aria-label="Les quatre cyberdecks">
 <a class="item" href="deck-01.html" data-go style="--c:#9FD8F5">
@@ -56,7 +56,7 @@
 
 <script type="module">
 import { mount, stars, glitchLinks } from './decks.js';
-stars(document.getElementById('sky'), 30);
+stars(document.getElementById('sky'), 34, '#F6D300');
 mount(document.getElementById('gpu'), 'gpu', { dist: 9, camY: 3.2, scale: 1.25, spin: 0.0015, ry: -0.6, tilt: 0.35, follow: 'window' });
 document.querySelectorAll('canvas.m3d').forEach(c => mount(c, c.dataset.kind, { scale: +(c.dataset.scale||1), spin: 0.003 }));
 glitchLinks();
