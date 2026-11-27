@@ -120,6 +120,36 @@ function gpu(m) {
   return g;
 }
 
+// ---------- la carte mère (avec la carte graphique branchée dessus) ----------
+function pcbTex() {
+  const c = document.createElement('canvas'); c.width = 1024; c.height = 768; const x = c.getContext('2d');
+  x.fillStyle = '#0c1f16'; x.fillRect(0, 0, 1024, 768);
+  x.strokeStyle = 'rgba(233,196,106,.55)'; x.lineWidth = 2;
+  let seed = 3; const r = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 170; i++) {                       // pistes en angles droits et à 45°, comme une vraie carte
+    let px = r() * 1024, py = r() * 768; x.beginPath(); x.moveTo(px, py);
+    for (let k = 0; k < 4; k++) { const d = 30 + r() * 140, a = [0, 1, 2, 3, 4, 5, 6, 7][(r() * 8) | 0] * Math.PI / 4; px += Math.cos(a) * d; py += Math.sin(a) * d; x.lineTo(px, py); }
+    x.stroke(); x.fillStyle = 'rgba(233,196,106,.8)'; x.beginPath(); x.arc(px, py, 3.5, 0, 7); x.fill();
+  }
+  x.fillStyle = 'rgba(255,255,255,.35)'; x.font = '600 18px monospace';
+  ['ARCHEK-MB  REV 0.1', 'PCIE_X16', 'DIMM_A1  DIMM_A2', 'CPU_FAN', 'BIOS', 'USB3_1', 'M.2_1'].forEach((t, i) => x.fillText(t, 40 + (i % 3) * 330, 60 + Math.floor(i / 3) * 300));
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+function rig(m) {
+  const g = new THREE.Group();
+  const board = new THREE.Mesh(new THREE.BoxGeometry(6, 0.08, 4.6), [m.pcb, m.pcb, new THREE.MeshPhysicalMaterial({ map: pcbTex(), roughness: 0.45, metalness: 0.2, clearcoat: 0.6 }), m.pcb, m.pcb, m.pcb]);
+  g.add(board);
+  const sock = new THREE.Mesh(rb(1.2, 0.18, 1.2, 0.04), m.chrome); sock.position.set(-0.6, 0.12, -0.9); g.add(sock);
+  const cpu = new THREE.Mesh(rb(0.9, 0.06, 0.9, 0.03), m.gold); cpu.position.set(-0.6, 0.24, -0.9); g.add(cpu);
+  for (let i = 0; i < 4; i++) { const d = new THREE.Mesh(rb(0.09, 0.32, 2.2, 0.02), i % 2 ? m.black : m.chrome); d.position.set(0.55 + i * 0.22, 0.2, -0.9); g.add(d); }
+  for (let i = 0; i < 14; i++) { const c = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.22, 14), m.chrome); c.position.set(-2.4 + (i % 7) * 0.22, 0.15, -2.0 + Math.floor(i / 7) * 0.26); g.add(c); }
+  const hs = new THREE.Mesh(rb(1.1, 0.35, 0.6, 0.05), m.black); hs.position.set(-2.1, 0.22, 0.2); g.add(hs);
+  const slot = new THREE.Mesh(rb(3.4, 0.12, 0.16, 0.02), m.black); slot.position.set(0.2, 0.1, 1.15); g.add(slot);
+  const card = gpu(m); card.scale.setScalar(0.85); card.rotation.x = Math.PI / 2; card.position.set(0.2, 0.85, 1.15); g.add(card);
+  g.userData.fans = card.userData.fans;
+  return g;
+}
+
 // ---------- monter une scène dans un canvas ----------
 export function mount(canvas, kind, opts = {}) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'low-power' });
@@ -130,7 +160,7 @@ export function mount(canvas, kind, opts = {}) {
   const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(3, 5, 4); scene.add(key);
   const cam = new THREE.PerspectiveCamera(opts.fov || 32, 1, 0.1, 100); cam.position.set(0, opts.camY ?? 2.2, opts.dist || 7); cam.lookAt(0, opts.lookY ?? 0.3, 0);
   const m = mats(DECKS[kind]?.screen || ['#222', '#000']);
-  const obj = kind === 'gpu' ? gpu(m) : BUILD[kind](m);
+  const obj = kind === 'gpu' ? gpu(m) : kind === 'rig' ? rig(m) : BUILD[kind](m);
   obj.scale.setScalar(opts.scale || 1); scene.add(obj);
   let mx = 0, my = 0, hover = 0, drag = null, spin = opts.spin ?? 0.004, ry = opts.ry ?? -0.5, rx = 0, visible = true, dirty = true;
   const target = opts.follow === 'window' ? window : canvas;
@@ -176,4 +206,29 @@ export function glitchLinks() {
     e.preventDefault(); document.documentElement.classList.add('glitch');
     setTimeout(() => location.href = a.href, 380);
   }));
+}
+
+// ---------- côté hacker : pluie de code, ligne de terminal qui s'écrit ----------
+const SRC = "import { Raspberry } from '@archek/cerveau'; const deck = useProjet('prochain', { max: 200 }); sudo ./build --deck 01; ssh archek@deck; cat /proc/cpuinfo; echo $BATTERY; 0x1F 0xA4 0x7E ";
+export function codeRain(canvas, color = 'rgba(246,211,0,') {
+  const x = canvas.getContext('2d'); let W, H, cols, drops, fs = 14;
+  function size() { const d = Math.min(2, devicePixelRatio || 1); W = canvas.width = innerWidth * d; H = canvas.height = innerHeight * d; fs = 13 * d; cols = Math.floor(W / (fs * 1.6)); drops = Array.from({ length: cols }, () => Math.random() * -60); }
+  size(); addEventListener('resize', size);
+  let last = 0;
+  (function f(t) { requestAnimationFrame(f); if (reduce || t - last < 60) return; last = t;
+    x.fillStyle = 'rgba(0,0,0,.16)'; x.globalCompositeOperation = 'destination-out'; x.fillRect(0, 0, W, H); x.globalCompositeOperation = 'source-over';
+    x.font = `${fs}px "JetBrains Mono", monospace`;
+    for (let i = 0; i < cols; i++) { const y = drops[i] * fs; if (y > 0) { x.fillStyle = color + (Math.random() < .08 ? '.9)' : '.35)'); x.fillText(SRC[(i * 7 + (drops[i] | 0)) % SRC.length], i * fs * 1.6, y); }
+      drops[i] += 0.6 + (i % 3) * 0.25; if (y > H && Math.random() > 0.96) drops[i] = Math.random() * -20; }
+  })(0);
+}
+export function typeLines(el, lines, speed = 26) {
+  if (reduce) { el.innerHTML = lines.map(l => l.replace(/&/g, '&amp;').replace(/</g, '&lt;')).join('<br>') + '<i class="cur"></i>'; return; }
+  let li = 0, ch = 0, out = '';
+  (function step() {
+    if (li >= lines.length) { el.innerHTML = out + '<i class="cur"></i>'; return; }
+    const l = lines[li];
+    if (ch <= l.length) { el.innerHTML = out + l.slice(0, ch).replace(/&/g, '&amp;').replace(/</g, '&lt;') + '<i class="cur"></i>'; ch++; setTimeout(step, speed); }
+    else { out += l.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '<br>'; li++; ch = 0; setTimeout(step, 240); }
+  })();
 }

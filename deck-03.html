@@ -8,8 +8,10 @@
 <style>:root{--bg:#C9B8FF;--ink:#2A0D7A;--gpuo:.16}</style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
 </head><body>
+<canvas class="rain" id="rain" aria-hidden="true"></canvas>
 <div class="sky" id="sky" aria-hidden="true"></div>
 <canvas class="gpu" id="gpu" aria-hidden="true"></canvas>
+<div class="crt" aria-hidden="true"></div>
 <header class="bar">
   <a class="x" href="https://archekozero.github.io/archek-infos.github.io/accueil.html" aria-label="Retour à l'accueil d'Archek">✕</a>
   <a class="oval" href="index.html" data-go>archek</a>
@@ -24,7 +26,7 @@
 </section>
 <section class="spec">
   <div class="col">
-    <p class="kicker">cyberdeck 03 / 04</p>
+    <p class="kicker">archek@deck:~$ cat deck_03.cfg</p>
     <p class="pitch">Un deck de poche translucide autour du Pi Zero 2 W, avec son antenne, façon console portable.</p>
     <p>Le moins puissant mais le plus léger, le moins cher et celui qui tient le plus longtemps sur batterie. Parfait pour un terminal, du SSH et de petits scripts.</p>
     <ul class="use"><li>terminal et SSH</li><li>petits scripts et capteurs</li><li>l'emporter partout</li></ul>
@@ -54,9 +56,11 @@
 <div class="scan" aria-hidden="true"></div>
 
 <script type="module">
-import { mount, stars, glitchLinks } from './decks.js';
+import { mount, stars, glitchLinks, codeRain, typeLines } from './decks.js';
+codeRain(document.getElementById('rain'));
 stars(document.getElementById('sky'), 22, 'rgba(0,0,0,.75)');
-mount(document.getElementById('gpu'), 'gpu', { dist: 9, camY: 3.2, scale: 1.25, spin: 0.0015, ry: -0.6, tilt: 0.35, follow: 'window' });
+codeRain(document.getElementById('rain'), 'rgba(0,0,0,');
+mount(document.getElementById('gpu'), 'rig', { dist: 10.5, camY: 5.5, scale: 1.15, spin: 0.0012, ry: -0.5, tilt: 0.15, follow: 'window' });
 mount(document.querySelector('.dmodel'), '03', { drag: true, scale: 1.2, spin: 0.002 });
 glitchLinks();
 </script>
