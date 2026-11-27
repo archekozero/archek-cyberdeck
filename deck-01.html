@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'essentiel – Cyberdeck – Archek</title><meta name="description" content="Une mallette dorée qui s'ouvre comme un vrai ordinateur : écran dans le couvercle, clavier dans le fond.">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABE0lEQVR4XmNgGOmAkdQA+J/d+B+fHsap9SSZyUSqA6gNCLoW3cfX1x/F6wbNQGsUeUIhMnhDAOZzdB/v+PgUbwh48EujyMNCBFdIDL4QQPc5uo/RfYgOcKnHFRIDHgIseCMUCcB8TmwaIKQOBoZOCKCDwoQwFKH+Basw1BADBn8I4Ip7XD6GxT2h3DJo0gDOumDkloTooI9bG1z/w1I9sbUhLI0Ufb2Kt8Yd8FxAsD0AA7CQIBYQ8vngzwWEgHycEjhtyNjIgpUeTTtIdGgigwFPAxi1Icxn6ODhonsk+ZBYcwZfCMBAZJYFSiAsZ2AAxzmhkID5HEP/tBNYk9WAhwDOeMUVh6QCQiE2eEOAEBg25QAAleZot28yEdAAAAAASUVORK5CYII=">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500;62..125,800;62..125,900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>:root{--bg:#9FD8F5;--ink:#0B2BFF}</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head><body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+<canvas class="gpu" id="gpu" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="x" href="https://archekozero.github.io/archek-infos.github.io/accueil.html" aria-label="Retour à l'accueil d'Archek">✕</a>
+  <a class="oval" href="index.html" data-go>archek</a>
+  <nav><a class="pill" href="index.html#decks" data-go>Decks</a><a class="pill" href="https://archekozero.github.io/archek-infos-rose.github.io/">Rose</a></nav>
+</header>
+
+<main class="dp">
+<section class="dhero">
+  <h1 class="huge"><span>L'ESS</span><span>ENTIEL</span></h1>
+  <canvas class="m3d dmodel" data-kind="01" aria-label="Le modèle 3D du cyberdeck L'essentiel, tu peux le faire tourner" role="img"></canvas>
+  <p class="hint">glisse pour le faire tourner</p>
+</section>
+<section class="spec">
+  <div class="col">
+    <p class="kicker">cyberdeck 01 / 04</p>
+    <p class="pitch">Une mallette dorée qui s'ouvre comme un vrai ordinateur : écran dans le couvercle, clavier dans le fond.</p>
+    <p>Le plus équilibré des quatre. Assez de puissance pour coder, naviguer sur le web léger, lancer des scripts et piloter mes autres projets, dans une coque qui se referme et se transporte.</p>
+    <ul class="use"><li>coder et lancer des scripts</li><li>naviguer sur un web léger</li><li>piloter Rose et mes projets à distance</li></ul>
+  </div>
+  <div class="col">
+    <h2>La puissance</h2>
+    <div class="pw"><span>processeur</span><i style="--w:100%"></i><b>Cortex-A72 · 4 cœurs · 1,8 GHz</b></div>
+<div class="pw"><span>mémoire</span><i style="--w:50%"></i><b>2 Go</b></div>
+<div class="pw"><span>autonomie</span><i style="--w:60%"></i><b>≈ 4,8 h</b></div>
+    <p class="note">Processeur comparé au Raspberry Pi 4 (100), mémoire comparée à 4 Go (100). Autonomie estimée avec la batterie de 10 000 mAh et l'écran allumé.</p>
+  </div>
+</section>
+<section class="parts">
+  <h2>Les pièces et le travail</h2>
+  <table><tr><td>cerveau</td><td><a href="https://www.kubii.com/fr/recherche?controller=search&s=raspberry+pi+4" target="_blank" rel="noopener">Raspberry Pi 4 · 2 Go</a></td><td>66,30 €</td></tr><tr><td>écran</td><td><a href="https://www.ldlc.com/fiche/PB00677886.html" target="_blank" rel="noopener">Waveshare 7" HDMI tactile IPS 1024×600</a></td><td>52,95 €</td></tr><tr><td>clavier</td><td><a href="https://www.ldlc.com/fiche/PB00200473.html" target="_blank" rel="noopener">Riitek Rii Mini i8, clavier sans fil + pavé tactile</a></td><td>19,95 €</td></tr><tr><td>stockage</td><td><a href="https://www.ldlc.pro/fr-lu/fiche/PB00622198.html" target="_blank" rel="noopener">SanDisk Ultra microSD 64 Go</a></td><td>20,94 €</td></tr><tr><td>énergie</td><td><a href="https://www.ldlc.com/fiche/PB00734831.html" target="_blank" rel="noopener">Nedis batterie externe 10 000 mAh, USB-C PD 20 W</a></td><td>19,75 €</td></tr><tr><td>coque</td><td><a href="https://www.leroymerlin.fr/produits/boite-a-outils-l-31-1-cm-69719076.html" target="_blank" rel="noopener">Petite boîte à outils Leroy Merlin</a></td><td>7,99 €</td></tr><tr class="mo"><td>main-d'œuvre</td><td>6 h × 12,31 € · découpe de la coque, fixations, câblage, installation</td><td>73,86 €</td></tr></table>
+  <div class="sum"><span>pièces</span><b>187,88 €</b></div>
+  <div class="sum"><span>main-d'œuvre</span><b>73,86 €</b></div>
+  <div class="sum total"><span>total</span><b>261,74 €</b></div>
+</section>
+<a class="next" href="deck-02.html" data-go><span>suivant</span><b>Tout dans le clavier</b></a>
+</main>
+<footer class="foot">
+  <p class="reach">On en parle ?</p>
+  <nav><a href="https://archekozero.github.io/archek-infos.github.io/accueil.html">Accueil</a><a href="https://archekozero.github.io/archek-infos-rose.github.io/">Rose</a><a href="https://archekozero.github.io/archek-cle/">Rose sous clé</a><a href="https://archekozero.github.io/archek-ia/">Une vraie IA</a><a href="https://archekozero.github.io/parcours/">Parcours</a><a href="https://archekozero.github.io/archek-conviction/">Convictions</a><a href="https://archekozero.github.io/archek-mention-l-gal/">Mentions légales</a></nav>
+  <small>Prix relevés le 26.11.2026 · main-d'œuvre au Smic horaire brut (12,31 €) · modèles 3D imaginés, pas encore construits</small>
+</footer>
+<div class="scan" aria-hidden="true"></div>
+
+<script type="module">
+import { mount, stars, glitchLinks } from './decks.js';
+stars(document.getElementById('sky'), 22, 'rgba(0,0,0,.75)');
+mount(document.getElementById('gpu'), 'gpu', { dist: 9, camY: 3.2, scale: 1.25, spin: 0.0015, ry: -0.6, tilt: 0.35, follow: 'window' });
+mount(document.querySelector('.dmodel'), '01', { drag: true, scale: 1.2, spin: 0.002 });
+glitchLinks();
+</script>
+</body></html>
