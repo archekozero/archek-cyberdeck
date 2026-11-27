@@ -8,8 +8,10 @@
 <style>:root{--bg:#9FD8F5;--ink:#0B2BFF;--gpuo:.16}</style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
 </head><body>
+<canvas class="rain" id="rain" aria-hidden="true"></canvas>
 <div class="sky" id="sky" aria-hidden="true"></div>
 <canvas class="gpu" id="gpu" aria-hidden="true"></canvas>
+<div class="crt" aria-hidden="true"></div>
 <header class="bar">
   <a class="x" href="https://archekozero.github.io/archek-infos.github.io/accueil.html" aria-label="Retour à l'accueil d'Archek">✕</a>
   <a class="oval" href="index.html" data-go>archek</a>
@@ -24,7 +26,7 @@
 </section>
 <section class="spec">
   <div class="col">
-    <p class="kicker">cyberdeck 01 / 04</p>
+    <p class="kicker">archek@deck:~$ cat deck_01.cfg</p>
     <p class="pitch">Une mallette dorée qui s'ouvre comme un vrai ordinateur : écran dans le couvercle, clavier dans le fond.</p>
     <p>Le plus équilibré des quatre. Assez de puissance pour coder, naviguer sur le web léger, lancer des scripts et piloter mes autres projets, dans une coque qui se referme et se transporte.</p>
     <ul class="use"><li>coder et lancer des scripts</li><li>naviguer sur un web léger</li><li>piloter Rose et mes projets à distance</li></ul>
@@ -54,9 +56,11 @@
 <div class="scan" aria-hidden="true"></div>
 
 <script type="module">
-import { mount, stars, glitchLinks } from './decks.js';
+import { mount, stars, glitchLinks, codeRain, typeLines } from './decks.js';
+codeRain(document.getElementById('rain'));
 stars(document.getElementById('sky'), 22, 'rgba(0,0,0,.75)');
-mount(document.getElementById('gpu'), 'gpu', { dist: 9, camY: 3.2, scale: 1.25, spin: 0.0015, ry: -0.6, tilt: 0.35, follow: 'window' });
+codeRain(document.getElementById('rain'), 'rgba(0,0,0,');
+mount(document.getElementById('gpu'), 'rig', { dist: 10.5, camY: 5.5, scale: 1.15, spin: 0.0012, ry: -0.5, tilt: 0.15, follow: 'window' });
 mount(document.querySelector('.dmodel'), '01', { drag: true, scale: 1.2, spin: 0.002 });
 glitchLinks();
 </script>
