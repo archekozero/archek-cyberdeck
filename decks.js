@@ -162,6 +162,7 @@ export function mount(canvas, kind, opts = {}) {
   const m = mats(DECKS[kind]?.screen || ['#222', '#000']);
   const obj = kind === 'gpu' ? gpu(m) : kind === 'rig' ? rig(m) : BUILD[kind](m);
   obj.scale.setScalar(opts.scale || 1); scene.add(obj);
+  if (opts.explode) obj.children.forEach(c => { c.userData.base = c.position.clone(); const d = c.position.clone(); d.y += 0.4; c.userData.dir = d.lengthSq() ? d.normalize() : new THREE.Vector3(0, 1, 0); });
   let mx = 0, my = 0, hover = 0, drag = null, spin = opts.spin ?? 0.004, ry = opts.ry ?? -0.5, rx = 0, visible = true, dirty = true;
   const target = opts.follow === 'window' ? window : canvas;
   target.addEventListener('pointermove', e => {
@@ -183,6 +184,8 @@ export function mount(canvas, kind, opts = {}) {
     rx += ((my * 0.25) - rx) * 0.08;
     obj.rotation.y = ry + mx * 0.35; obj.rotation.x = rx + (opts.tilt || 0);
     obj.position.y = reduce ? 0 : Math.sin(t / 900) * 0.06;
+    if (opts.explode) { const r = canvas.getBoundingClientRect(); const k = Math.max(0, Math.min(1, 1 - Math.abs((r.top + r.height / 2) / innerHeight - 0.5) * 2.2)); const e = reduce ? 0.6 : k * 1.6;
+      obj.children.forEach((c, i) => { c.position.copy(c.userData.base).addScaledVector(c.userData.dir, e * (0.6 + (i % 5) * 0.18)); }); }
     renderer.render(scene, cam);
   })(t0);
   return { scene, obj };
@@ -231,4 +234,28 @@ export function typeLines(el, lines, speed = 26) {
     if (ch <= l.length) { el.innerHTML = out + l.slice(0, ch).replace(/&/g, '&amp;').replace(/</g, '&lt;') + '<i class="cur"></i>'; ch++; setTimeout(step, speed); }
     else { out += l.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '<br>'; li++; ch = 0; setTimeout(step, 240); }
   })();
+}
+
+// ---------- texte qui se « déchiffre » quand il arrive à l'écran ----------
+export function decrypt(sel = '[data-hack]') {
+  const G = '01#$%&@<>/\\|{}[]=+*';
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; io.unobserve(e.target); const el = e.target, txt = el.textContent;
+    if (reduce) return; let f = 0; const n = 22;
+    (function step() { el.textContent = [...txt].map((ch, i) => ch === ' ' || i < (f / n) * txt.length ? ch : G[(Math.random() * G.length) | 0]).join(''); if (++f <= n) setTimeout(step, 35); else el.textContent = txt; })();
+  }), { threshold: .4 });
+  document.querySelectorAll(sel).forEach(el => io.observe(el));
+}
+// ---------- chiffres qui défilent jusqu'au prix ----------
+export function counters(sel = '[data-to]') {
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; io.unobserve(e.target); const el = e.target, to = +el.dataset.to, t0 = performance.now();
+    (function f(t) { const k = reduce ? 1 : Math.min(1, (t - t0) / 1200), v = to * (1 - Math.pow(1 - k, 3)); el.textContent = v.toFixed(2).replace('.', ',') + ' €'; if (k < 1) requestAnimationFrame(f); })(t0);
+  }), { threshold: .5 });
+  document.querySelectorAll(sel).forEach(el => io.observe(el));
+}
+// ---------- journal de « scan » qui s'écrit ligne par ligne ----------
+export function scanLog(el, lines) {
+  const io = new IntersectionObserver(es => { if (!es[0].isIntersecting) return; io.disconnect(); typeLines(el, lines, 14); }, { threshold: .3 });
+  io.observe(el);
 }
