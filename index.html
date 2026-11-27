@@ -51,6 +51,22 @@ svg.lead{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;ov
 .ed{min-height:0;margin:0}
 .code{font-size:12px;line-height:1.55;flex:none}
 .bottom{grid-column:1 / -1}
+/* main-d'oeuvre */
+.sub{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:8px 14px 0;font-size:12px;color:var(--dim)}
+.sub b{color:var(--ink);font-weight:600;white-space:nowrap} .sub em{font-style:normal;color:var(--faint);font-size:11px}
+/* repartition */
+.rep{font-size:10.5px;line-height:1.55;white-space:pre;color:var(--dim);margin:0;min-height:150px}
+.rep b{color:var(--ink);font-weight:600}
+/* l'oeil qui nous suit */
+#eyeFloat{position:fixed;right:14px;bottom:14px;width:140px;background:radial-gradient(closest-side,rgba(0,0,0,.92),rgba(0,0,0,.6) 70%,transparent);height:auto;z-index:6;pointer-events:none;opacity:0;transform:translateY(12px) scale(.9);transition:opacity .35s,transform .35s}
+#eyeFloat.on{opacity:1;transform:none}
+/* les souris qui construisent la page */
+.mice{position:fixed;inset:0;pointer-events:none;z-index:8}
+.mouse{position:absolute;left:0;top:0;width:16px;height:22px;will-change:transform}
+.mouse span{position:absolute;left:14px;top:16px;font-size:9px;color:#fff;background:#000;border:1px solid rgba(255,255,255,.5);padding:0 4px;white-space:nowrap}
+[data-b]{clip-path:inset(0 100% 100% 0)}
+[data-b].built{clip-path:inset(0 0 0 0);transition:clip-path .28s cubic-bezier(.2,.8,.2,1)}
+html.nob [data-b]{clip-path:none}
 /* ---------- tableau de bord ---------- */
 .dash{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:0;border:1px solid var(--line);margin:70px 0 0}
 .panel-h{display:flex;justify-content:space-between;font-size:11px;color:var(--dim);padding:8px 12px;border-bottom:1px solid var(--line)}
@@ -105,11 +121,13 @@ footer a{color:var(--dim);text-decoration:none} footer a:hover{color:var(--ink)}
 </head>
 <body>
 <canvas id="snow" class="bg" aria-hidden="true"></canvas>
+<canvas id="eyeFloat" width="380" height="240" aria-hidden="true"></canvas>
+<div class="mice" id="mice" aria-hidden="true"></div>
 <div class="wrap">
 <div class="top" id="top"><a class="logo" href="https://archekozero.github.io/archek-infos.github.io/accueil.html"><b>AK</b>archek.dev</a><a href="https://github.com/archekozero">github</a></div>
 
 <div class="stage"><div class="screen" id="screen">
-  <nav class="rail" aria-label="Configurations">
+  <nav data-b class="rail" aria-label="Configurations">
     <a class="thumb" href="#configs"><i></i>configs/</a>
     <a class="thumb" href="#notes"><i></i>notes/</a>
     <a class="thumb big" href="#top"><i>AK</i>whoami</a>
@@ -117,25 +135,25 @@ footer a{color:var(--dim);text-decoration:none} footer a:hover{color:var(--ink)}
     <div style="margin-top:auto;line-height:1.5">26.11.2026<br>défiler · ⏎ ouvrir</div>
   </nav>
 
-  <section class="ed" aria-label="Prochain projet : un cyberdeck pour moins de 200 euros">
+  <section data-b class="ed" aria-label="Prochain projet : un cyberdeck pour moins de 200 euros">
     <div class="code"><div class="ln" id="ln"></div><pre class="src" id="src"></pre></div>
     <div class="status"><span class="mode" id="mode">NORMAL</span><span>~/projets/cyberdeck/index.tsx</span><span style="margin-left:auto;color:var(--faint)" id="pos">1:1</span></div>
     <div class="cmd">:colorscheme noir-et-blanc</div>
   </section>
 
-  <aside class="right" aria-label="Tableau de bord">
+  <aside data-b class="right" aria-label="Tableau de bord">
     <canvas id="eye" width="380" height="240" aria-hidden="true"></canvas>
     <div class="pup" id="pup" aria-hidden="true"></div>
     <div class="box"><h4><span>coupe A-A</span><span>prix par config</span></h4><canvas id="wave" aria-hidden="true"></canvas></div>
-    <div class="box"><h4><span>jumeau numérique</span><span>en €</span></h4><table class="twin"><tbody><tr><td>l'essentiel</td><td>187,88 €</td></tr><tr><td>tout dans le clavier</td><td>196,24 €</td></tr><tr><td>le plus petit</td><td>139,64 €</td></tr><tr><td>petit budget</td><td>157,94 €</td></tr></tbody></table></div>
-    <div class="box tree" style="border-right:1px solid var(--line)"><h4><span>fish — ~ · archek</span><span>racine 200 €</span></h4><canvas id="tree" aria-hidden="true" style="height:150px"></canvas></div>
+    <div class="box"><h4><span>jumeau numérique</span><span>pièces · + main-d'œuvre</span></h4><table class="twin"><tbody><tr><td>l'essentiel</td><td>187,88 €</td><td>261,74 €</td></tr><tr><td>tout dans le clavier</td><td>196,24 €</td><td>245,48 €</td></tr><tr><td>le plus petit</td><td>139,64 €</td><td>238,12 €</td></tr><tr><td>petit budget</td><td>157,94 €</td><td>231,80 €</td></tr></tbody></table></div>
+    <div class="box"><h4><span>répartition du prix</span><span id="repn">—</span></h4><pre class="rep" id="rep" aria-live="off"></pre></div>
   </aside>
 
-  <div class="bottom">
+  <div data-b class="bottom">
     <div class="term" aria-label="Présentation" style="padding-top:0">
       <div><span class="pr">archek@dev ~</span> <span class="gt">›</span> whoami</div>
       <div>Je construis Rose, mon petit assistant de bureau. Mon prochain projet : un cyberdeck, un ordinateur de poche fait main, pour moins de 200 €.</div>
-      <div><span class="pr">archek@dev ~</span> <span class="gt">›</span> fetch cyberdeck <span style="color:var(--dim)">→</span> configs <span class="num">4</span> · min <span class="num">139,64 €</span> · max <span class="num">196,24 €</span></div>
+      <div><span class="pr">archek@dev ~</span> <span class="gt">›</span> fetch cyberdeck <span style="color:var(--dim)">→</span> configs <span class="num">4</span> · min <span class="num">139,64 €</span> · max <span class="num">196,24 €</span> · + main-d'œuvre au Smic</div>
       <div class="links"><span class="pr">archek@dev ~</span> <span class="gt">›</span> ls liens/ <a href="#configs">configurations</a><a href="https://archekozero.github.io/archek-infos-rose.github.io/">rose</a><a href="https://archekozero.github.io/archek-infos.github.io/accueil.html">accueil</a><a href="https://archekozero.github.io/parcours/">parcours</a></div>
     </div>
     <div class="stats"><div><small>CONFIGS</small>4</div><div><small>MIN</small>139,64 €</div><div><small>MAX</small>196,24 €</div><div><small>BUDGET</small>200 €</div><div><small>ŒIL</small><span id="eyest">au repos</span></div><div><small>ÉTAT</small>en préparation</div></div>
@@ -143,53 +161,61 @@ footer a{color:var(--dim);text-decoration:none} footer a:hover{color:var(--ink)}
   <svg class="lead" aria-hidden="true"><line id="leadl" x1="0" y1="0" x2="0" y2="0" stroke="rgba(232,232,232,.45)" stroke-dasharray="3 4"/></svg>
 </div></div>
 
-<section class="hole" aria-hidden="true"><canvas id="hole"></canvas><div class="cap">// toutes les possibilités d'achat<b>moins de 200 €</b></div></section>
+<section class="hole" aria-hidden="true"><canvas id="hole"></canvas><div data-b class="cap">// toutes les possibilités d'achat<b>moins de 200 €</b></div></section>
 
 <section id="configs">
-  <h2>~/projets/cyberdeck/configs/ — 4 fichiers</h2>
-  <p class="intro">Chaque ligne mène à la boutique où j'ai relevé le prix. Les prix bougent souvent (la mémoire des Raspberry Pi a beaucoup augmenté en 2026) : je les remettrai à jour avant d'acheter.</p>
+  <h2 data-b>~/projets/cyberdeck/configs/ — 4 fichiers</h2>
+  <p data-b class="intro">Chaque ligne mène à la boutique où j'ai relevé le prix. Les prix bougent souvent (la mémoire des Raspberry Pi a beaucoup augmenté en 2026) : je les remettrai à jour avant d'acheter.</p>
   <div class="grid">
 <article class="pane" id="deck_01" data-total="187.88">
-<header><span>~/configs/deck_01.cfg</span><span class="ok">ok · sous le budget</span></header>
+<header><span>~/configs/deck_01.cfg</span><span class="ok">pièces sous 200 €</span></header>
 <div class="sw"><i style="background:#9AF0C8"></i><i style="background:#F3EDB0"></i><i style="background:#E8E8E8"></i></div><h3>L'essentiel</h3><p class="desc">Le meilleur équilibre : un vrai petit ordinateur, un écran tactile, un clavier, de la batterie.</p>
 <table><tbody><tr><td class="r">cerveau</td><td><a href="https://www.kubii.com/fr/recherche?controller=search&s=raspberry+pi+4" target="_blank" rel="noopener">Raspberry Pi 4 · 2 Go</a></td><td class="pp">66,30 €</td></tr><tr><td class="r">écran</td><td><a href="https://www.ldlc.com/fiche/PB00677886.html" target="_blank" rel="noopener">Waveshare 7" HDMI tactile IPS 1024×600 (câble + adaptateur micro-HDMI inclus)</a></td><td class="pp">52,95 €</td></tr><tr><td class="r">clavier</td><td><a href="https://www.ldlc.com/fiche/PB00200473.html" target="_blank" rel="noopener">Riitek Rii Mini i8, clavier sans fil + pavé tactile</a></td><td class="pp">19,95 €</td></tr><tr><td class="r">stockage</td><td><a href="https://www.ldlc.pro/fr-lu/fiche/PB00622198.html" target="_blank" rel="noopener">SanDisk Ultra microSD 64 Go</a></td><td class="pp">20,94 €</td></tr><tr><td class="r">énergie</td><td><a href="https://www.ldlc.com/fiche/PB00734831.html" target="_blank" rel="noopener">Nedis batterie externe 10 000 mAh, USB-C PD 20 W</a></td><td class="pp">19,75 €</td></tr><tr><td class="r">coque</td><td><a href="https://www.leroymerlin.fr/produits/boite-a-outils-l-31-1-cm-69719076.html" target="_blank" rel="noopener">Petite boîte à outils Leroy Merlin (la coque du deck)</a></td><td class="pp">7,99 €</td></tr></tbody></table>
-<div class="tot"><span>total</span><b>187,88 €</b></div>
-<div class="meter">[||||||||||||||||||||||||||||||||||||||··] 94 % de 200 €</div>
+<div class="sub"><span>pièces</span><b>187,88 €</b></div>
+<div class="sub mo"><span>main-d'œuvre · 6 h × 12,31 € (Smic horaire)<br><em>découpe de la coque, fixations, câblage, installation</em></span><b>73,86 €</b></div>
+<div class="tot"><span>total avec main-d'œuvre</span><b>261,74 €</b></div>
+<div class="meter">pièces [||||||||||||||||||||||||||||||||||||||··] 94 % de 200 €</div>
 </article>
 <article class="pane" id="deck_02" data-total="196.24">
-<header><span>~/configs/deck_02.cfg</span><span class="ok">ok · sous le budget</span></header>
+<header><span>~/configs/deck_02.cfg</span><span class="ok">pièces sous 200 €</span></header>
 <div class="sw"><i style="background:#FFB3C1"></i><i style="background:#B6C8FF"></i><i style="background:#E8E8E8"></i></div><h3>Tout dans le clavier</h3><p class="desc">Le Raspberry Pi 400 est déjà caché dans un clavier : il ne reste qu'à lui coller un écran.</p>
 <table><tbody><tr><td class="r">cerveau + clavier</td><td><a href="https://www.ldlc.com/fr-lu/fiche/PB00431919.html" target="_blank" rel="noopener">Raspberry Pi 400 · 4 Go (le PC est dans le clavier)</a></td><td class="pp">99,95 €</td></tr><tr><td class="r">écran</td><td><a href="https://www.ldlc.com/fiche/PB00677886.html" target="_blank" rel="noopener">Waveshare 7" HDMI tactile IPS 1024×600 (câble + adaptateur micro-HDMI inclus)</a></td><td class="pp">52,95 €</td></tr><tr><td class="r">stockage</td><td><a href="https://www.ldlc.pro/fr-lu/fiche/PB00622198.html" target="_blank" rel="noopener">SanDisk Ultra microSD 32 Go</a></td><td class="pp">15,60 €</td></tr><tr><td class="r">énergie</td><td><a href="https://www.ldlc.com/fiche/PB00734831.html" target="_blank" rel="noopener">Nedis batterie externe 10 000 mAh, USB-C PD 20 W</a></td><td class="pp">19,75 €</td></tr><tr><td class="r">coque</td><td><a href="https://www.leroymerlin.fr/produits/boite-a-outils-l-31-1-cm-69719076.html" target="_blank" rel="noopener">Petite boîte à outils Leroy Merlin (la coque du deck)</a></td><td class="pp">7,99 €</td></tr></tbody></table>
-<div class="tot"><span>total</span><b>196,24 €</b></div>
-<div class="meter">[|||||||||||||||||||||||||||||||||||||||·] 98 % de 200 €</div>
+<div class="sub"><span>pièces</span><b>196,24 €</b></div>
+<div class="sub mo"><span>main-d'œuvre · 4 h × 12,31 € (Smic horaire)<br><em>fixer l'écran sur le clavier, câblage, installation</em></span><b>49,24 €</b></div>
+<div class="tot"><span>total avec main-d'œuvre</span><b>245,48 €</b></div>
+<div class="meter">pièces [|||||||||||||||||||||||||||||||||||||||·] 98 % de 200 €</div>
 </article>
 <article class="pane" id="deck_03" data-total="139.64">
-<header><span>~/configs/deck_03.cfg</span><span class="ok">ok · sous le budget</span></header>
+<header><span>~/configs/deck_03.cfg</span><span class="ok">pièces sous 200 €</span></header>
 <div class="sw"><i style="background:#F3EDB0"></i><i style="background:#FF5C6C"></i><i style="background:#E8E8E8"></i></div><h3>Le plus petit</h3><p class="desc">Un deck de poche autour du Pi Zero 2 W : moins puissant, mais le plus léger et le moins cher.</p>
 <table><tbody><tr><td class="r">cerveau (kit)</td><td><a href="https://www.kubii.com/en/nano-computers/3477-1367-kits-raspberry-pi-zero-2-w-3272496308275.html" target="_blank" rel="noopener">Kit Raspberry Pi Zero 2 W (carte, boîtier, alim, microSD 16 Go)</a></td><td class="pp">39,00 €</td></tr><tr><td class="r">écran</td><td><a href="https://www.ldlc.com/fiche/PB00677886.html" target="_blank" rel="noopener">Waveshare 7" HDMI tactile IPS 1024×600 (câble + adaptateur micro-HDMI inclus)</a></td><td class="pp">52,95 €</td></tr><tr><td class="r">clavier</td><td><a href="https://www.ldlc.com/fiche/PB00200473.html" target="_blank" rel="noopener">Riitek Rii Mini i8, clavier sans fil + pavé tactile</a></td><td class="pp">19,95 €</td></tr><tr><td class="r">énergie</td><td><a href="https://www.ldlc.com/fiche/PB00734831.html" target="_blank" rel="noopener">Nedis batterie externe 10 000 mAh, USB-C PD 20 W</a></td><td class="pp">19,75 €</td></tr><tr><td class="r">coque</td><td><a href="https://www.leroymerlin.fr/produits/boite-a-outils-l-31-1-cm-69719076.html" target="_blank" rel="noopener">Petite boîte à outils Leroy Merlin (la coque du deck)</a></td><td class="pp">7,99 €</td></tr></tbody></table>
-<div class="tot"><span>total</span><b>139,64 €</b></div>
-<div class="meter">[||||||||||||||||||||||||||||············] 70 % de 200 €</div>
+<div class="sub"><span>pièces</span><b>139,64 €</b></div>
+<div class="sub mo"><span>main-d'œuvre · 8 h × 12,31 € (Smic horaire)<br><em>soudure des broches du Pi Zero, découpe, câblage, installation</em></span><b>98,48 €</b></div>
+<div class="tot"><span>total avec main-d'œuvre</span><b>238,12 €</b></div>
+<div class="meter">pièces [||||||||||||||||||||||||||||············] 70 % de 200 €</div>
 </article>
 <article class="pane" id="deck_04" data-total="157.94">
-<header><span>~/configs/deck_04.cfg</span><span class="ok">ok · sous le budget</span></header>
+<header><span>~/configs/deck_04.cfg</span><span class="ok">pièces sous 200 €</span></header>
 <div class="sw"><i style="background:#B6C8FF"></i><i style="background:#9AF0C8"></i><i style="background:#E8E8E8"></i></div><h3>Petit budget</h3><p class="desc">La même base que « L'essentiel » avec 1 Go de mémoire : pour le terminal et les scripts.</p>
 <table><tbody><tr><td class="r">cerveau</td><td><a href="https://www.kubii.com/fr/recherche?controller=search&s=raspberry+pi+4" target="_blank" rel="noopener">Raspberry Pi 4 · 1 Go</a></td><td class="pp">41,70 €</td></tr><tr><td class="r">écran</td><td><a href="https://www.ldlc.com/fiche/PB00677886.html" target="_blank" rel="noopener">Waveshare 7" HDMI tactile IPS 1024×600 (câble + adaptateur micro-HDMI inclus)</a></td><td class="pp">52,95 €</td></tr><tr><td class="r">clavier</td><td><a href="https://www.ldlc.com/fiche/PB00200473.html" target="_blank" rel="noopener">Riitek Rii Mini i8, clavier sans fil + pavé tactile</a></td><td class="pp">19,95 €</td></tr><tr><td class="r">stockage</td><td><a href="https://www.ldlc.pro/fr-lu/fiche/PB00622198.html" target="_blank" rel="noopener">SanDisk Ultra microSD 32 Go</a></td><td class="pp">15,60 €</td></tr><tr><td class="r">énergie</td><td><a href="https://www.ldlc.com/fiche/PB00734831.html" target="_blank" rel="noopener">Nedis batterie externe 10 000 mAh, USB-C PD 20 W</a></td><td class="pp">19,75 €</td></tr><tr><td class="r">coque</td><td><a href="https://www.leroymerlin.fr/produits/boite-a-outils-l-31-1-cm-69719076.html" target="_blank" rel="noopener">Petite boîte à outils Leroy Merlin (la coque du deck)</a></td><td class="pp">7,99 €</td></tr></tbody></table>
-<div class="tot"><span>total</span><b>157,94 €</b></div>
-<div class="meter">[||||||||||||||||||||||||||||||||········] 79 % de 200 €</div>
+<div class="sub"><span>pièces</span><b>157,94 €</b></div>
+<div class="sub mo"><span>main-d'œuvre · 6 h × 12,31 € (Smic horaire)<br><em>découpe de la coque, fixations, câblage, installation</em></span><b>73,86 €</b></div>
+<div class="tot"><span>total avec main-d'œuvre</span><b>231,80 €</b></div>
+<div class="meter">pièces [||||||||||||||||||||||||||||||||········] 79 % de 200 €</div>
 </article>
   </div>
 </section>
 
 <section id="notes">
   <h2>// à savoir avant d'acheter</h2>
-  <div class="notes">
+  <div data-b class="notes">
     <div class="note"><b>Pourquoi pas un Raspberry Pi 5 ?</b>Avec les hausses de prix de 2026, la version 4 Go coûte à elle seule autour de 145 € en France : avec l'écran, on dépasse déjà 200 €.</div>
     <div class="note"><b>L'énergie</b>Un Pi 4 demande 5 V et 3 A. Une batterie externe USB-C de 20 W suffit ; plus tard, un module batterie dédié rendra le deck vraiment autonome.</div>
     <div class="note"><b>La coque</b>Une boîte à outils à 8 € sert de premier boîtier. Ensuite : une mallette étanche, ou une coque imprimée en 3D.</div>
   </div>
 </section>
 
-<footer>
+<footer data-b>
   <a href="https://archekozero.github.io/archek-infos.github.io/accueil.html">Accueil</a>
   <a href="https://archekozero.github.io/archek-infos-rose.github.io/">Rose</a>
   <a href="https://archekozero.github.io/archek-cle/">Rose sous clé</a>
@@ -263,7 +289,7 @@ var eye=document.getElementById('eye'),ex=eye.getContext('2d'),pup=document.getE
 var CODE="const deck = useProjet(\"prochain\", { max: 200 }); return <Boite><Raspberry modele=\"pi 4\" /><Ecran pouces={7} /></Boite>; export default Cyberdeck; ";
 var EW=380,EH=240,cols=58,rows=24,cw=EW/cols,rh=EH/rows,ix=0,iy=0,blink=0,nextBlink=performance.now()+2500;
 function eyeFrame(t){
-  var r=eye.getBoundingClientRect(),cx=r.left+r.width*.5,cy=r.top+r.height*.5,dx=MX-cx,dy=MY-cy,d=Math.hypot(dx,dy)||1,k=Math.min(1,d/420);
+  var r=eye.getBoundingClientRect(),rf=r.bottom<0?ef.getBoundingClientRect():r,cx=rf.left+rf.width*.5,cy=rf.top+rf.height*.5,dx=MX-cx,dy=MY-cy,d=Math.hypot(dx,dy)||1,k=Math.min(1,d/420);
   ix+=((dx/d)*k*.42-ix)*.15;iy+=((dy/d)*k*.32-iy)*.15;
   if(t>nextBlink){blink=1e-3;nextBlink=t+2600+Math.random()*3500}
   var open=1; if(blink>0){open=Math.abs(Math.cos(blink*Math.PI));blink+=.09;if(blink>=1)blink=0}
@@ -285,34 +311,30 @@ function eyeFrame(t){
   }
   // la ligne pointillee de l'oeil a la souris + les coordonnees
   var host=document.getElementById('screen').getBoundingClientRect();
-  if(moved&&innerWidth>860){leadl.setAttribute('x1',r.left-host.left+r.width*(.5+ix*.5));leadl.setAttribute('y1',r.top-host.top+r.height*(.5+iy*.6));leadl.setAttribute('x2',MX-host.left);leadl.setAttribute('y2',MY-host.top);leadl.style.display=''}else leadl.style.display='none';
+  if(moved&&innerWidth>860&&r.bottom>0){leadl.setAttribute('x1',r.left-host.left+r.width*(.5+ix*.5));leadl.setAttribute('y1',r.top-host.top+r.height*(.5+iy*.6));leadl.setAttribute('x2',MX-host.left);leadl.setAttribute('y2',MY-host.top);leadl.style.display=''}else leadl.style.display='none';
   pup.textContent="['pupil:u'] "+(.5+ix/2).toFixed(7)+"\n"+(.5+iy/2).toFixed(7)+"\n"+(blink>0?'blink':'None');
   eyest.textContent=moved?'tracking':'au repos';
+  var vis=r.bottom>0&&r.top<innerHeight, past=r.bottom<0;
+  if(past){ef.classList.add('on');efx.clearRect(0,0,380,240);efx.drawImage(eye,0,0)}else ef.classList.remove('on');
   requestAnimationFrame(eyeFrame);
 }
+var ef=document.getElementById('eyeFloat'),efx=ef.getContext('2d');
 requestAnimationFrame(eyeFrame);
 
-/* ---------- l'arbre : les lettres A et K en racines, comme une contribution ---------- */
-function tree(){var c=document.getElementById('tree'),x=fit(c),W=c.width,H=c.height;x.clearRect(0,0,W,H);
-  for(var y=0;y<H;y+=4*dpr){x.fillStyle='rgba(232,232,232,.04)';x.fillRect(0,y,W,dpr)}
-  x.strokeStyle='rgba(232,232,232,.55)';x.lineWidth=dpr;x.setLineDash([2*dpr,3*dpr]);x.beginPath();x.moveTo(20*dpr,H*.5);x.lineTo(W-20*dpr,H*.5);x.stroke();x.setLineDash([]);
-  var seed=7;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647}
-  function branch(x0,y0,ang,len,w,depth){if(depth<=0||len<4*dpr)return;var x1=x0+Math.cos(ang)*len,y1=y0+Math.sin(ang)*len;
-    x.strokeStyle='rgba(232,232,232,'+(.35+depth*.08)+')';x.lineWidth=w;x.beginPath();x.moveTo(x0,y0);x.lineTo(x1,y1);x.stroke();
-    branch(x1,y1,ang+(rnd()-.5)*.5,len*.86,w*.82,depth-1);if(rnd()<.42)branch(x1,y1,ang+(rnd()<.5?-1:1)*(.5+rnd()*.5),len*.6,w*.6,depth-2)}
-  var s=Math.min(W*.42,H*.8),ox=W*.5,oy=H*.88;
-  // A : deux jambes + barre
-  [[-.42,0,-.02,-1],[.38,0,-.02,-1],[-.24,-.42,.22,-.42]].forEach(function(st){
-    var n=14;for(var i=0;i<n;i++){var t=i/n,x0=ox+(st[0]+(st[2]-st[0])*t)*s,y0=oy+(st[1]+(st[3]-st[1])*t)*s,a=Math.atan2(st[3]-st[1],st[2]-st[0]);
-      branch(x0,y0,a+(rnd()-.5)*.6,s*.09,1.6*dpr,5)}});
-  x.fillStyle='rgba(232,232,232,.7)';x.font=(10*dpr)+"px 'JetBrains Mono', monospace";x.fillText('apex 200 €',ox-30*dpr,oy-s*1.04);
-}
+/* ---------- la repartition du prix : elle change de config toute seule ---------- */
+var ROLES={"L'essentiel": [["cerveau", 66.3], ["écran", 52.95], ["clavier", 19.95], ["stockage", 20.94], ["énergie", 19.75], ["coque", 7.99], ["main-d'œuvre", 73.86]], "Tout dans le clavier": [["cerveau + clavier", 99.95], ["écran", 52.95], ["stockage", 15.6], ["énergie", 19.75], ["coque", 7.99], ["main-d'œuvre", 49.24]], "Le plus petit": [["cerveau (kit)", 39.0], ["écran", 52.95], ["clavier", 19.95], ["énergie", 19.75], ["coque", 7.99], ["main-d'œuvre", 98.48]], "Petit budget": [["cerveau", 41.7], ["écran", 52.95], ["clavier", 19.95], ["stockage", 15.6], ["énergie", 19.75], ["coque", 7.99], ["main-d'œuvre", 73.86]]},RN=Object.keys(ROLES),ri=0,rep=document.getElementById('rep'),repn=document.getElementById('repn');
+function repDraw(k){var it=ROLES[RN[ri]],tot=it.reduce(function(s,p){return s+p[1]},0),out='';
+  it.forEach(function(p){var w=Math.round(p[1]/tot*22*k),r=(p[0]+'            ').slice(0,13);
+    out+=r+'<b>'+'█'.repeat(w)+'</b>'+'·'.repeat(22-w)+' '+(p[1]*k).toFixed(2).replace('.',',')+' €\n'});
+  out+='\n'+('total         ')+'<b>'+(tot*k).toFixed(2).replace('.',',')+' €</b>';rep.innerHTML=out;repn.textContent=RN[ri].toLowerCase()}
+(function repLoop(){var t0=performance.now();(function g(){var k=Math.min(1,(performance.now()-t0)/700);repDraw(1-Math.pow(1-k,3));if(k<1&&!reduce)requestAnimationFrame(g)})();
+  setTimeout(function(){ri=(ri+1)%RN.length;repLoop()},3200)})();
 /* ---------- la vague : un pic par configuration ---------- */
 function wave(){var c=document.getElementById('wave'),x=fit(c),W=c.width,H=c.height,v=[187.88, 196.24, 139.64, 157.94];
   x.clearRect(0,0,W,H);x.strokeStyle='rgba(232,232,232,.85)';x.lineWidth=dpr;x.beginPath();
   for(var i=0;i<=W;i++){var y=0;v.forEach(function(p,k){var cx=W*(k+.5)/v.length,sd=W*.06;y+=p/200*Math.exp(-Math.pow(i-cx,2)/(2*sd*sd))});x.lineTo(i,H-4*dpr-y*(H-10*dpr))}
   x.stroke();x.fillStyle='rgba(243,237,176,.9)';x.fillRect(0,H-2*dpr,W,dpr)}
-tree();wave();addEventListener('resize',function(){tree();wave()});
+wave();addEventListener('resize',wave);
 
 /* ---------- le trou noir ---------- */
 var hc=document.getElementById('hole'),hx,rays=[];
@@ -331,6 +353,28 @@ requestAnimationFrame(holeFrame);
 /* ---------- l'ecran penche suit un peu la souris ---------- */
 var scr=document.getElementById('screen');
 if(!reduce)addEventListener('mousemove',function(){if(innerWidth<=860)return;var rx=9-(MY/innerHeight-.5)*5,ry=-7+(MX/innerWidth-.5)*7;scr.style.transform='rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) rotateZ(1deg)'},{passive:true});
+
+/* ---------- plusieurs souris construisent la page, tres vite ---------- */
+(function(){
+  var els=[].slice.call(document.querySelectorAll('[data-b]')),box=document.getElementById('mice');
+  if(reduce||!('IntersectionObserver' in window)){document.documentElement.classList.add('nob');return}
+  var names=['archek','rose','deck','pi','ecran','clavier'],busy=0,queue=[];
+  var ARROW='<svg viewBox="0 0 16 22" width="16" height="22"><path d="M1 1 L1 17 L5 13 L8 20 L11 19 L8 12 L14 12 Z" fill="#fff" stroke="#000" stroke-width="1.2"/></svg>';
+  function build(el){
+    var m=document.createElement('div');m.className='mouse';m.innerHTML=ARROW+'<span>'+names[(Math.random()*names.length)|0]+'</span>';box.appendChild(m);
+    var r=el.getBoundingClientRect(),sx=Math.random()<.5?-30:innerWidth+30,sy=Math.random()*innerHeight,tx=r.left+8,ty=Math.max(4,r.top+6),ex=Math.min(innerWidth-20,r.right-10),ey=Math.min(innerHeight-24,r.bottom-10);
+    var t0=performance.now(),T1=170,T2=260;
+    (function go(t){var k=t-t0,x,y;
+      if(k<T1){var e=k/T1;e=1-Math.pow(1-e,3);x=sx+(tx-sx)*e;y=sy+(ty-sy)*e}
+      else if(k<T1+T2){if(!el.classList.contains('built'))el.classList.add('built');var e=(k-T1)/T2;e=e*(2-e);x=tx+(ex-tx)*e;y=ty+(ey-ty)*e}
+      else{m.remove();busy--;next();return}
+      m.style.transform='translate('+x+'px,'+y+'px)';requestAnimationFrame(go)})(t0);
+  }
+  function next(){while(busy<6&&queue.length){busy++;var el=queue.shift();setTimeout(build.bind(null,el),busy*35)}}
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){io.unobserve(e.target);queue.push(e.target);next()}})},{rootMargin:'0px 0px -5% 0px'});
+  els.forEach(function(el){io.observe(el)});
+  setTimeout(function(){els.forEach(function(el){el.classList.add('built')})},9000);   // filet de securite
+})();
 
 /* ---------- la neige ---------- */
 var sn=document.getElementById('snow'),sx;function sfit(){sx=fit(sn)}sfit();addEventListener('resize',sfit);
