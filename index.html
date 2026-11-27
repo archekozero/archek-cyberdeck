@@ -4,7 +4,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABE0lEQVR4XmNgGOmAkdQA+J/d+B+fHsap9SSZyUSqA6gNCLoW3cfX1x/F6wbNQGsUeUIhMnhDAOZzdB/v+PgUbwh48EujyMNCBFdIDL4QQPc5uo/RfYgOcKnHFRIDHgIseCMUCcB8TmwaIKQOBoZOCKCDwoQwFKH+Basw1BADBn8I4Ip7XD6GxT2h3DJo0gDOumDkloTooI9bG1z/w1I9sbUhLI0Ufb2Kt8Yd8FxAsD0AA7CQIBYQ8vngzwWEgHycEjhtyNjIgpUeTTtIdGgigwFPAxi1Icxn6ODhonsk+ZBYcwZfCMBAZJYFSiAsZ2AAxzmhkID5HEP/tBNYk9WAhwDOeMUVh6QCQiE2eEOAEBg25QAAleZot28yEdAAAAAASUVORK5CYII=">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=1795751526">
+<link rel="stylesheet" href="style.css?v=1795751780">
 <style>html,body{background:#07070b;color:#f2efe9}:root{--acc:#F6D300;--acc-rgb:246,211,0}</style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
 </head><body>
@@ -30,6 +30,57 @@
 <section class="manifest">
   <p>Mon prochain projet : un ordinateur de poche fait main. Quatre machines imaginées, quatre caractères, <em>moins de 200 € de pièces</em> pour chacune.</p>
 </section>
+<section class="what">
+  <h2 data-hack>C'est quoi un cyberdeck ?</h2>
+  <div class="what-g">
+    <p class="lead">Un cyberdeck, c'est un ordinateur portable qu'on fabrique soi-même, pièce par pièce. Une petite carte Raspberry Pi sert de cerveau. On lui ajoute un écran, un clavier et une batterie, puis on range tout dans une coque qu'on choisit et qu'on découpe. Le nom vient des romans cyberpunk des années 80, où les hackers se branchaient au réseau avec ces machines bricolées.</p>
+    <ul class="why">
+      <li><b>Pourquoi j'en fais un ?</b> Pour avoir une machine à moi, que je comprends de A à Z, et que je peux réparer, ouvrir et modifier.</li>
+      <li><b>À quoi il va servir ?</b> Coder, lancer des scripts, me connecter à mes serveurs en SSH, et piloter Rose et mes autres projets quand je ne suis pas devant mon PC.</li>
+      <li><b>La règle du jeu :</b> moins de 200 € de pièces neuves, achetées en France. Je compte aussi mon temps de travail, au Smic horaire.</li>
+    </ul>
+  </div>
+</section>
+<section class="inside">
+  <div class="inside-3d"><canvas class="m3d explode" data-kind="01" aria-label="Le cyberdeck L'essentiel qui s'ouvre en pièces détachées quand on fait défiler" role="img"></canvas></div>
+  <div>
+    <h2 data-hack>Ce qu'il y a dedans</h2>
+    <p class="term log" id="scan" aria-label="Les six pièces d'un cyberdeck"></p>
+    <ol class="parts6">
+      <li><b>Le cerveau</b> · un Raspberry Pi, un ordinateur complet grand comme une carte bancaire.</li>
+      <li><b>L'écran</b> · 7 pouces, tactile, branché en HDMI.</li>
+      <li><b>Le clavier</b> · un mini clavier sans fil avec pavé tactile.</li>
+      <li><b>Le stockage</b> · une carte microSD où vit le système (Linux).</li>
+      <li><b>L'énergie</b> · une batterie externe USB-C, pour 4 à 8 h loin d'une prise.</li>
+      <li><b>La coque</b> · une petite boîte à outils, découpée et percée à la main.</li>
+    </ol>
+  </div>
+</section>
+<section class="poster" aria-labelledby="pt">
+  <div class="ph"><h2 id="pt" data-hack>L'affiche des prix</h2><p>prix relevés le 26.11.2026 · main-d'œuvre au Smic (12,31 €/h)</p></div>
+  <div class="pgrid"><div class="pc" style="--c:#9FD8F5"><span class="pid">[01]</span><b class="pn">L'essentiel</b>
+<dl><dt>pièces</dt><dd data-to="187.88">0 €</dd><dt>main-d'œuvre · 6 h</dt><dd data-to="73.86">0 €</dd></dl>
+<p class="pt" data-to="261.74">0 €</p><p class="pa">ram 2 Go · ≈4,8 h</p></div><div class="pc" style="--c:#FF8A3D"><span class="pid">[02]</span><b class="pn">Tout dans le clavier</b>
+<dl><dt>pièces</dt><dd data-to="196.24">0 €</dd><dt>main-d'œuvre · 4 h</dt><dd data-to="49.24">0 €</dd></dl>
+<p class="pt" data-to="245.48">0 €</p><p class="pa">ram 4 Go · ≈4,2 h</p></div><div class="pc" style="--c:#C9B8FF"><span class="pid">[03]</span><b class="pn">Le plus petit</b>
+<dl><dt>pièces</dt><dd data-to="139.64">0 €</dd><dt>main-d'œuvre · 8 h</dt><dd data-to="98.48">0 €</dd></dl>
+<p class="pt" data-to="238.12">0 €</p><p class="pa">ram 512 Mo · ≈7,9 h</p></div><div class="pc" style="--c:#8FE3B0"><span class="pid">[04]</span><b class="pn">Petit budget</b>
+<dl><dt>pièces</dt><dd data-to="157.94">0 €</dd><dt>main-d'œuvre · 6 h</dt><dd data-to="73.86">0 €</dd></dl>
+<p class="pt" data-to="231.80">0 €</p><p class="pa">ram 1 Go · ≈4,8 h</p></div></div>
+  <p class="pfoot">&gt; le moins cher au total : <b>Petit budget</b> · tous sous 200 € de pièces</p>
+</section>
+<section class="build">
+  <h2 data-hack>Comment je vais le construire</h2>
+  <ol class="steps">
+    <li><b>Choisir</b><span>comparer les quatre modèles et en garder un</span></li>
+    <li><b>Commander</b><span>les pièces, toutes chez des vendeurs français</span></li>
+    <li><b>Découper</b><span>la coque, pour l'écran, les câbles et l'aération</span></li>
+    <li><b>Câbler</b><span>brancher le Pi, l'écran et la batterie, souder si besoin</span></li>
+    <li><b>Installer</b><span>Linux, mes outils, et Rose en télécommande</span></li>
+    <li><b>Partager</b><span>photos, vidéo et plans sur ce site</span></li>
+  </ol>
+</section>
+<section class="grid-h"><h2 data-hack>Les quatre modèles</h2><p>Touche un modèle pour voir sa fiche complète : ses pièces, sa puissance et son prix.</p></section>
 <section class="grid" id="decks" aria-label="Les quatre cyberdecks">
 <a class="item" href="deck-01.html" data-go style="--c:#9FD8F5">
   <canvas class="m3d" data-kind="01" aria-hidden="true"></canvas>
@@ -61,11 +112,13 @@
 <div class="scan" aria-hidden="true"></div>
 
 <script type="module">
-import { mount, stars, glitchLinks, codeRain, typeLines } from './decks.js?v=1795751526';
+import { mount, stars, glitchLinks, codeRain, typeLines, decrypt, counters, scanLog } from './decks.js?v=1795751780';
 codeRain(document.getElementById('rain'));
 stars(document.getElementById('sky'), 34, '#F6D300');
 mount(document.getElementById('gpu'), 'rig', { dist: 10.5, camY: 5.5, scale: 1.15, spin: 0.0012, ry: -0.5, tilt: 0.15, follow: 'window' });
-document.querySelectorAll('canvas.m3d').forEach(c => mount(c, c.dataset.kind, { scale: +(c.dataset.scale||1), spin: 0.003 }));
+document.querySelectorAll('canvas.m3d').forEach(c => mount(c, c.dataset.kind, { scale: +(c.dataset.scale||1), spin: 0.003, explode: c.classList.contains('explode') }));
+decrypt(); counters();
+scanLog(document.getElementById('scan'), ['archek@deck:~$ lsdeck --all', '[ok] cerveau ...... raspberry pi', '[ok] ecran ........ 7 pouces hdmi tactile', '[ok] clavier ...... sans fil', '[ok] stockage ..... microsd', '[ok] energie ...... 10 000 mAh', '[ok] coque ........ boite a outils']);
 typeLines(document.getElementById('tty'), ['archek@deck:~$ sudo ./cyberdeck --build', '[ ok ] 4 modèles trouvés · pièces < 200 €', '[ .. ] prochain projet · 2026']);
 glitchLinks();
 </script>
