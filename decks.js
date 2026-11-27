@@ -212,14 +212,14 @@ export function glitchLinks() {
 const SRC = "import { Raspberry } from '@archek/cerveau'; const deck = useProjet('prochain', { max: 200 }); sudo ./build --deck 01; ssh archek@deck; cat /proc/cpuinfo; echo $BATTERY; 0x1F 0xA4 0x7E ";
 export function codeRain(canvas, color = 'rgba(246,211,0,') {
   const x = canvas.getContext('2d'); let W, H, cols, drops, fs = 14;
-  function size() { const d = Math.min(2, devicePixelRatio || 1); W = canvas.width = innerWidth * d; H = canvas.height = innerHeight * d; fs = 13 * d; cols = Math.floor(W / (fs * 1.6)); drops = Array.from({ length: cols }, () => Math.random() * -60); }
+  function size() { const d = Math.min(2, devicePixelRatio || 1); W = canvas.width = innerWidth * d; H = canvas.height = innerHeight * d; fs = 13 * d; cols = Math.floor(W / (fs * 0.9)); drops = Array.from({ length: cols }, () => Math.random() * H / fs); }
   size(); addEventListener('resize', size);
   let last = 0;
   (function f(t) { requestAnimationFrame(f); if (reduce || t - last < 60) return; last = t;
-    x.fillStyle = 'rgba(0,0,0,.16)'; x.globalCompositeOperation = 'destination-out'; x.fillRect(0, 0, W, H); x.globalCompositeOperation = 'source-over';
+    x.fillStyle = 'rgba(0,0,0,.09)'; x.globalCompositeOperation = 'destination-out'; x.fillRect(0, 0, W, H); x.globalCompositeOperation = 'source-over';
     x.font = `${fs}px "JetBrains Mono", monospace`;
-    for (let i = 0; i < cols; i++) { const y = drops[i] * fs; if (y > 0) { x.fillStyle = color + (Math.random() < .08 ? '.9)' : '.35)'); x.fillText(SRC[(i * 7 + (drops[i] | 0)) % SRC.length], i * fs * 1.6, y); }
-      drops[i] += 0.6 + (i % 3) * 0.25; if (y > H && Math.random() > 0.96) drops[i] = Math.random() * -20; }
+    for (let i = 0; i < cols; i++) { const y = drops[i] * fs; if (y > 0) { x.fillStyle = color + (Math.random() < .12 ? '1)' : '.6)'); x.fillText(SRC[(i * 7 + (drops[i] | 0)) % SRC.length], i * fs * 0.9, y); }
+      drops[i] += 0.6 + (i % 3) * 0.25; if (y > H && Math.random() > 0.9) drops[i] = Math.random() * -20; }
   })(0);
 }
 export function typeLines(el, lines, speed = 26) {
