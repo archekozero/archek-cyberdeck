@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tout dans le clavier – Cyberdeck – Archek</title><meta name="description" content="Le Raspberry Pi 400 cache déjà l'ordinateur dans son clavier : il ne reste qu'à lui donner un écran.">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABE0lEQVR4XmNgGOmAkdQA+J/d+B+fHsap9SSZyUSqA6gNCLoW3cfX1x/F6wbNQGsUeUIhMnhDAOZzdB/v+PgUbwh48EujyMNCBFdIDL4QQPc5uo/RfYgOcKnHFRIDHgIseCMUCcB8TmwaIKQOBoZOCKCDwoQwFKH+Basw1BADBn8I4Ip7XD6GxT2h3DJo0gDOumDkloTooI9bG1z/w1I9sbUhLI0Ufb2Kt8Yd8FxAsD0AA7CQIBYQ8vngzwWEgHycEjhtyNjIgpUeTTtIdGgigwFPAxi1Icxn6ODhonsk+ZBYcwZfCMBAZJYFSiAsZ2AAxzmhkID5HEP/tBNYk9WAhwDOeMUVh6QCQiE2eEOAEBg25QAAleZot28yEdAAAAAASUVORK5CYII=">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500;62..125,800;62..125,900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>:root{--bg:#FF8A3D;--ink:#1A0A00}</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head><body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+<canvas class="gpu" id="gpu" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="x" href="https://archekozero.github.io/archek-infos.github.io/accueil.html" aria-label="Retour à l'accueil d'Archek">✕</a>
+  <a class="oval" href="index.html" data-go>archek</a>
+  <nav><a class="pill" href="index.html#decks" data-go>Decks</a><a class="pill" href="https://archekozero.github.io/archek-infos-rose.github.io/">Rose</a></nav>
+</header>
+
+<main class="dp">
+<section class="dhero">
+  <h1 class="huge"><span>TOUT DANS</span><span>LE CLAVIER</span></h1>
+  <canvas class="m3d dmodel" data-kind="02" aria-label="Le modèle 3D du cyberdeck Tout dans le clavier, tu peux le faire tourner" role="img"></canvas>
+  <p class="hint">glisse pour le faire tourner</p>
+</section>
+<section class="spec">
+  <div class="col">
+    <p class="kicker">cyberdeck 02 / 04</p>
+    <p class="pitch">Le Raspberry Pi 400 cache déjà l'ordinateur dans son clavier : il ne reste qu'à lui donner un écran.</p>
+    <p>Le plus simple à monter et le plus puissant des quatre grâce à ses 4 Go de mémoire. Moins « valise de hacker », plus « station de travail de poche ».</p>
+    <ul class="use"><li>plusieurs applis ouvertes en même temps</li><li>un vrai navigateur</li><li>le plus rapide à assembler</li></ul>
+  </div>
+  <div class="col">
+    <h2>La puissance</h2>
+    <div class="pw"><span>processeur</span><i style="--w:100%"></i><b>Cortex-A72 · 4 cœurs · 1,8 GHz</b></div>
+<div class="pw"><span>mémoire</span><i style="--w:100%"></i><b>4 Go</b></div>
+<div class="pw"><span>autonomie</span><i style="--w:52%"></i><b>≈ 4,2 h</b></div>
+    <p class="note">Processeur comparé au Raspberry Pi 4 (100), mémoire comparée à 4 Go (100). Autonomie estimée avec la batterie de 10 000 mAh et l'écran allumé.</p>
+  </div>
+</section>
+<section class="parts">
+  <h2>Les pièces et le travail</h2>
+  <table><tr><td>cerveau + clavier</td><td><a href="https://www.ldlc.com/fr-lu/fiche/PB00431919.html" target="_blank" rel="noopener">Raspberry Pi 400 · 4 Go (le PC est dans le clavier)</a></td><td>99,95 €</td></tr><tr><td>écran</td><td><a href="https://www.ldlc.com/fiche/PB00677886.html" target="_blank" rel="noopener">Waveshare 7" HDMI tactile IPS 1024×600</a></td><td>52,95 €</td></tr><tr><td>stockage</td><td><a href="https://www.ldlc.pro/fr-lu/fiche/PB00622198.html" target="_blank" rel="noopener">SanDisk Ultra microSD 32 Go</a></td><td>15,60 €</td></tr><tr><td>énergie</td><td><a href="https://www.ldlc.com/fiche/PB00734831.html" target="_blank" rel="noopener">Nedis batterie externe 10 000 mAh, USB-C PD 20 W</a></td><td>19,75 €</td></tr><tr><td>coque</td><td><a href="https://www.leroymerlin.fr/produits/boite-a-outils-l-31-1-cm-69719076.html" target="_blank" rel="noopener">Petite boîte à outils Leroy Merlin</a></td><td>7,99 €</td></tr><tr class="mo"><td>main-d'œuvre</td><td>4 h × 12,31 € · fixer l'écran sur le clavier, câblage, installation</td><td>49,24 €</td></tr></table>
+  <div class="sum"><span>pièces</span><b>196,24 €</b></div>
+  <div class="sum"><span>main-d'œuvre</span><b>49,24 €</b></div>
+  <div class="sum total"><span>total</span><b>245,48 €</b></div>
+</section>
+<a class="next" href="deck-03.html" data-go><span>suivant</span><b>Le plus petit</b></a>
+</main>
+<footer class="foot">
+  <p class="reach">On en parle ?</p>
+  <nav><a href="https://archekozero.github.io/archek-infos.github.io/accueil.html">Accueil</a><a href="https://archekozero.github.io/archek-infos-rose.github.io/">Rose</a><a href="https://archekozero.github.io/archek-cle/">Rose sous clé</a><a href="https://archekozero.github.io/archek-ia/">Une vraie IA</a><a href="https://archekozero.github.io/parcours/">Parcours</a><a href="https://archekozero.github.io/archek-conviction/">Convictions</a><a href="https://archekozero.github.io/archek-mention-l-gal/">Mentions légales</a></nav>
+  <small>Prix relevés le 26.11.2026 · main-d'œuvre au Smic horaire brut (12,31 €) · modèles 3D imaginés, pas encore construits</small>
+</footer>
+<div class="scan" aria-hidden="true"></div>
+
+<script type="module">
+import { mount, stars, glitchLinks } from './decks.js';
+stars(document.getElementById('sky'), 22, 'rgba(0,0,0,.75)');
+mount(document.getElementById('gpu'), 'gpu', { dist: 9, camY: 3.2, scale: 1.25, spin: 0.0015, ry: -0.6, tilt: 0.35, follow: 'window' });
+mount(document.querySelector('.dmodel'), '02', { drag: true, scale: 1.2, spin: 0.002 });
+glitchLinks();
+</script>
+</body></html>

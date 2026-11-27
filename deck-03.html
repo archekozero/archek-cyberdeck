@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le plus petit – Cyberdeck – Archek</title><meta name="description" content="Un deck de poche translucide autour du Pi Zero 2 W, avec son antenne, façon console portable.">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABE0lEQVR4XmNgGOmAkdQA+J/d+B+fHsap9SSZyUSqA6gNCLoW3cfX1x/F6wbNQGsUeUIhMnhDAOZzdB/v+PgUbwh48EujyMNCBFdIDL4QQPc5uo/RfYgOcKnHFRIDHgIseCMUCcB8TmwaIKQOBoZOCKCDwoQwFKH+Basw1BADBn8I4Ip7XD6GxT2h3DJo0gDOumDkloTooI9bG1z/w1I9sbUhLI0Ufb2Kt8Yd8FxAsD0AA7CQIBYQ8vngzwWEgHycEjhtyNjIgpUeTTtIdGgigwFPAxi1Icxn6ODhonsk+ZBYcwZfCMBAZJYFSiAsZ2AAxzmhkID5HEP/tBNYk9WAhwDOeMUVh6QCQiE2eEOAEBg25QAAleZot28yEdAAAAAASUVORK5CYII=">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500;62..125,800;62..125,900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>:root{--bg:#C9B8FF;--ink:#2A0D7A}</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head><body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+<canvas class="gpu" id="gpu" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="x" href="https://archekozero.github.io/archek-infos.github.io/accueil.html" aria-label="Retour à l'accueil d'Archek">✕</a>
+  <a class="oval" href="index.html" data-go>archek</a>
+  <nav><a class="pill" href="index.html#decks" data-go>Decks</a><a class="pill" href="https://archekozero.github.io/archek-infos-rose.github.io/">Rose</a></nav>
+</header>
+
+<main class="dp">
+<section class="dhero">
+  <h1 class="huge"><span>LE PLUS</span><span>PETIT</span></h1>
+  <canvas class="m3d dmodel" data-kind="03" aria-label="Le modèle 3D du cyberdeck Le plus petit, tu peux le faire tourner" role="img"></canvas>
+  <p class="hint">glisse pour le faire tourner</p>
+</section>
+<section class="spec">
+  <div class="col">
+    <p class="kicker">cyberdeck 03 / 04</p>
+    <p class="pitch">Un deck de poche translucide autour du Pi Zero 2 W, avec son antenne, façon console portable.</p>
+    <p>Le moins puissant mais le plus léger, le moins cher et celui qui tient le plus longtemps sur batterie. Parfait pour un terminal, du SSH et de petits scripts.</p>
+    <ul class="use"><li>terminal et SSH</li><li>petits scripts et capteurs</li><li>l'emporter partout</li></ul>
+  </div>
+  <div class="col">
+    <h2>La puissance</h2>
+    <div class="pw"><span>processeur</span><i style="--w:40%"></i><b>Cortex-A53 · 4 cœurs · 1 GHz</b></div>
+<div class="pw"><span>mémoire</span><i style="--w:13%"></i><b>512 Mo</b></div>
+<div class="pw"><span>autonomie</span><i style="--w:98%"></i><b>≈ 7,9 h</b></div>
+    <p class="note">Processeur comparé au Raspberry Pi 4 (100), mémoire comparée à 4 Go (100). Autonomie estimée avec la batterie de 10 000 mAh et l'écran allumé.</p>
+  </div>
+</section>
+<section class="parts">
+  <h2>Les pièces et le travail</h2>
+  <table><tr><td>cerveau (kit)</td><td><a href="https://www.kubii.com/en/nano-computers/3477-1367-kits-raspberry-pi-zero-2-w-3272496308275.html" target="_blank" rel="noopener">Kit Raspberry Pi Zero 2 W (carte, boîtier, alim, microSD 16 Go)</a></td><td>39,00 €</td></tr><tr><td>écran</td><td><a href="https://www.ldlc.com/fiche/PB00677886.html" target="_blank" rel="noopener">Waveshare 7" HDMI tactile IPS 1024×600</a></td><td>52,95 €</td></tr><tr><td>clavier</td><td><a href="https://www.ldlc.com/fiche/PB00200473.html" target="_blank" rel="noopener">Riitek Rii Mini i8, clavier sans fil + pavé tactile</a></td><td>19,95 €</td></tr><tr><td>énergie</td><td><a href="https://www.ldlc.com/fiche/PB00734831.html" target="_blank" rel="noopener">Nedis batterie externe 10 000 mAh, USB-C PD 20 W</a></td><td>19,75 €</td></tr><tr><td>coque</td><td><a href="https://www.leroymerlin.fr/produits/boite-a-outils-l-31-1-cm-69719076.html" target="_blank" rel="noopener">Petite boîte à outils Leroy Merlin</a></td><td>7,99 €</td></tr><tr class="mo"><td>main-d'œuvre</td><td>8 h × 12,31 € · soudure des broches du Pi Zero, découpe, câblage, installation</td><td>98,48 €</td></tr></table>
+  <div class="sum"><span>pièces</span><b>139,64 €</b></div>
+  <div class="sum"><span>main-d'œuvre</span><b>98,48 €</b></div>
+  <div class="sum total"><span>total</span><b>238,12 €</b></div>
+</section>
+<a class="next" href="deck-04.html" data-go><span>suivant</span><b>Petit budget</b></a>
+</main>
+<footer class="foot">
+  <p class="reach">On en parle ?</p>
+  <nav><a href="https://archekozero.github.io/archek-infos.github.io/accueil.html">Accueil</a><a href="https://archekozero.github.io/archek-infos-rose.github.io/">Rose</a><a href="https://archekozero.github.io/archek-cle/">Rose sous clé</a><a href="https://archekozero.github.io/archek-ia/">Une vraie IA</a><a href="https://archekozero.github.io/parcours/">Parcours</a><a href="https://archekozero.github.io/archek-conviction/">Convictions</a><a href="https://archekozero.github.io/archek-mention-l-gal/">Mentions légales</a></nav>
+  <small>Prix relevés le 26.11.2026 · main-d'œuvre au Smic horaire brut (12,31 €) · modèles 3D imaginés, pas encore construits</small>
+</footer>
+<div class="scan" aria-hidden="true"></div>
+
+<script type="module">
+import { mount, stars, glitchLinks } from './decks.js';
+stars(document.getElementById('sky'), 22, 'rgba(0,0,0,.75)');
+mount(document.getElementById('gpu'), 'gpu', { dist: 9, camY: 3.2, scale: 1.25, spin: 0.0015, ry: -0.6, tilt: 0.35, follow: 'window' });
+mount(document.querySelector('.dmodel'), '03', { drag: true, scale: 1.2, spin: 0.002 });
+glitchLinks();
+</script>
+</body></html>
