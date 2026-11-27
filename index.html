@@ -3,9 +3,9 @@
 <title>Un cyberdeck – Archek</title><meta name="description" content="Le prochain projet d'Archek : un cyberdeck fait main. Quatre modèles imaginés en 3D, leurs pièces, leurs prix et leur puissance.">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABE0lEQVR4XmNgGOmAkdQA+J/d+B+fHsap9SSZyUSqA6gNCLoW3cfX1x/F6wbNQGsUeUIhMnhDAOZzdB/v+PgUbwh48EujyMNCBFdIDL4QQPc5uo/RfYgOcKnHFRIDHgIseCMUCcB8TmwaIKQOBoZOCKCDwoQwFKH+Basw1BADBn8I4Ip7XD6GxT2h3DJo0gDOumDkloTooI9bG1z/w1I9sbUhLI0Ufb2Kt8Yd8FxAsD0AA7CQIBYQ8vngzwWEgHycEjhtyNjIgpUeTTtIdGgigwFPAxi1Icxn6ODhonsk+ZBYcwZfCMBAZJYFSiAsZ2AAxzmhkID5HEP/tBNYk9WAhwDOeMUVh6QCQiE2eEOAEBg25QAAleZot28yEdAAAAAASUVORK5CYII=">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500;62..125,800;62..125,900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<style>:root{--bg:#0E0E10;--ink:#F2F2F2;--gpuo:.35}</style>
+<style>:root{--acc:#F6D300;--acc-rgb:246,211,0}</style>
 <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
 </head><body>
 <canvas class="rain" id="rain" aria-hidden="true"></canvas>
@@ -13,14 +13,18 @@
 <canvas class="gpu" id="gpu" aria-hidden="true"></canvas>
 <div class="crt" aria-hidden="true"></div>
 <header class="bar">
-  <a class="x" href="https://archekozero.github.io/archek-infos.github.io/accueil.html" aria-label="Retour à l'accueil d'Archek">✕</a>
-  <a class="oval" href="index.html" data-go>archek</a>
-  <nav><a class="pill" href="index.html#decks" data-go>Decks</a><a class="pill" href="https://archekozero.github.io/archek-infos-rose.github.io/">Rose</a></nav>
+  <nav class="topnav" aria-label="Sites d'Archek">
+    <a href="https://archekozero.github.io/archek-infos.github.io/accueil.html">Accueil</a>
+    <a href="https://archekozero.github.io/archek-infos.github.io/accueil.html#dl">Bêta testeur</a>
+    <a href="https://archekozero.github.io/archek-infos-rose.github.io/">Rose</a>
+    <a href="index.html" data-go aria-current="page">Cyberdeck</a>
+  </nav>
 </header>
+<div class="hud" aria-hidden="true"><div><b>ARCHEK</b> — CYBERDECK<div class="hb"><i id="hbar"></i></div></div><span class="blink">▮▮▮▮</span></div>
 
 <main>
 <section class="hero">
-  <h1 class="big"><span>Cyber</span><canvas class="m3d hero3d" data-kind="01" data-scale="1.15" aria-hidden="true"></canvas><span class="it">deck</span></h1>
+  <h1 class="big"><span class="ol">Cyber</span><canvas class="m3d hero3d" data-kind="01" data-scale="1.15" aria-hidden="true"></canvas><span class="it">deck</span></h1>
   <p class="tag term" id="tty" aria-label="archek@deck : sudo ./cyberdeck --build, 4 modèles trouvés sous 200 euros de pièces"></p>
 </section>
 <section class="manifest">
@@ -65,4 +69,5 @@ document.querySelectorAll('canvas.m3d').forEach(c => mount(c, c.dataset.kind, { 
 typeLines(document.getElementById('tty'), ['archek@deck:~$ sudo ./cyberdeck --build', '[ ok ] 4 modèles trouvés · pièces < 200 €', '[ .. ] prochain projet · 2026']);
 glitchLinks();
 </script>
+<script>addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('hbar').style.width=(100*h.scrollTop/Math.max(1,h.scrollHeight-innerHeight))+'%'},{passive:true})</script>
 </body></html>
